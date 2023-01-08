@@ -154,6 +154,17 @@ namespace RentCar.Services
             return true;
         }
 
+        public bool SaveNewMarkService(string markName)
+        {
+            var marks = new Marks()
+            {
+                CreatedDate = DateTime.Now,
+                MarkName = markName
+            };
+           // _carsRepository.SaveNewMark(marks); 
+            return true;
+        }
+
         public CarDetails GetCarDetails(int id)
         {
             var rowCar = _carsRepository.GetCarById(id);

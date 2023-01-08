@@ -76,6 +76,12 @@ namespace RentCar.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult SaveNewMark(string markName)
+        {
+            var result = _rentCarService.SaveNewMarkService(markName);
+            return Ok(result);
+        }
         [HttpGet]
         public IActionResult AddNewModel()
         {

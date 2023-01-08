@@ -120,7 +120,12 @@
                     contentType: false,
                     processData: false,
                     success:function (data) {
-                        alert("Successfully added");
+                        Swal.fire({    
+                                icon: 'success',
+                                title: 'Yeni maşın əlavə olundu',
+                                showConfirmButton: false,
+                                timer: 1500
+                             })
                     },
                     error: function () {
                         alert("Error while inserting data");

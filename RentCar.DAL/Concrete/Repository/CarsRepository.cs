@@ -77,7 +77,19 @@ namespace RentCar.DAL.Concrete.Repository
                 return false;
             }
         }
-
+        public bool SaveNewMark(Marks mark)
+        {
+            try
+            {
+                _dbcontext.Marks.Add(mark);
+                _dbcontext.SaveChanges();
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
 
     }
 }
