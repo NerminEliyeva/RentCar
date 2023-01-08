@@ -467,6 +467,7 @@ nav {
 
 .containersecimpenceresi {
     min-height: 635px;
+    padding:80px;
 }
 
 .secimler {
@@ -514,7 +515,7 @@ nav {
 
 .birSecim {
     width: 35%;
-    margin: 50px auto;
+    margin:auto;
     text-align: center;
     padding: 10px 30px;
     background-color: white;

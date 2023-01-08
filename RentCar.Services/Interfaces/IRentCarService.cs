@@ -15,5 +15,7 @@ namespace RentCar.Services.Interfaces
         bool SaveNewMarkService(string markName);
         bool SaveNewEngineTypeService(string engineTypeName);
         bool SaveNewCategoryService(string categoryName);
+        bool SaveNewModelService(string modelName, int markId);
+        List<Marks> GetMarks();
     }
 }

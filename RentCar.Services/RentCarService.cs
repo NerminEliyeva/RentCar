@@ -76,6 +76,10 @@ namespace RentCar.Services
         {
             return _carsRepository.GetModelsById(id);
         }
+        public List<Marks> GetMarks()
+        {
+            return _carsRepository.GetMarks();
+        }
         public NewCarData GetDataForAddingNewCar()
         {
             var markas = _carsRepository.GetMarks();
@@ -197,6 +201,21 @@ namespace RentCar.Services
             return true;
         }
 
+        public bool SaveNewModelService(string modelName,int markId)
+        {
+            if (string.IsNullOrEmpty(modelName))
+            {
+                return false;
+            }
+            var model = new Models.Entities.Models()
+            {
+                CreatedDate = DateTime.Now,
+                ModelName = modelName,
+                ModelMarkId = markId                
+            };
+            _carsRepository.SaveNewModel(model);
+            return true;
+        }
 
         public CarDetails GetCarDetails(int id)
         {

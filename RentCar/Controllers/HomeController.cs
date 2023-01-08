@@ -95,7 +95,22 @@ namespace RentCar.Controllers
         [HttpGet]
         public IActionResult AddNewModel()
         {
-            return View();
+            return View(_rentCarService.GetMarks());
+        }
+
+        [HttpPost]
+        public IActionResult SaveNewModel(string modelName,int markId)
+        {
+            var isOk = _rentCarService.SaveNewModelService(modelName,markId);
+
+            if (isOk)
+            {
+                return Ok(isOk);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet]

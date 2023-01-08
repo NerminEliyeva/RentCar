@@ -29,7 +29,6 @@ namespace RentCar.DAL.Concrete.Repository
         {
             return (_dbcontext.Models.Where(x => x.ModelMarkId == MarkId).ToList());
         }
-
         public string GetMainImageByCarId(int id)
         {
             return (_dbcontext.Images.Where(x => x.ImageCarId == id && x.MainImage == 1).FirstOrDefault().FullPath);
@@ -116,5 +115,20 @@ namespace RentCar.DAL.Concrete.Repository
                 return false;
             }
         }
+        public bool SaveNewModel(Models.Entities.Models model)
+        {
+            try
+            {
+                _dbcontext.Models.Add(model);
+                _dbcontext.SaveChanges();
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
+
+
     }
 }
