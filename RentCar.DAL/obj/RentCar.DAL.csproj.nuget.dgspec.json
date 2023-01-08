@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\C# Projects\\RentCar\\RentCar.DAL\\RentCar.DAL.csproj": {}
+    "C:\\Nermin_Eliyeva_git\\RentCar\\RentCar.DAL\\RentCar.DAL.csproj": {}
   },
   "projects": {
-    "C:\\C# Projects\\RentCar\\RentCar.DAL\\RentCar.DAL.csproj": {
+    "C:\\Nermin_Eliyeva_git\\RentCar\\RentCar.DAL\\RentCar.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\C# Projects\\RentCar\\RentCar.DAL\\RentCar.DAL.csproj",
+        "projectUniqueName": "C:\\Nermin_Eliyeva_git\\RentCar\\RentCar.DAL\\RentCar.DAL.csproj",
         "projectName": "RentCar.DAL",
-        "projectPath": "C:\\C# Projects\\RentCar\\RentCar.DAL\\RentCar.DAL.csproj",
+        "projectPath": "C:\\Nermin_Eliyeva_git\\RentCar\\RentCar.DAL\\RentCar.DAL.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\C# Projects\\RentCar\\RentCar.DAL\\obj\\",
+        "outputPath": "C:\\Nermin_Eliyeva_git\\RentCar\\RentCar.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -31,8 +31,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\C# Projects\\RentCar\\RentCar.Models\\RentCar.Models.csproj": {
-                "projectPath": "C:\\C# Projects\\RentCar\\RentCar.Models\\RentCar.Models.csproj"
+              "C:\\Nermin_Eliyeva_git\\RentCar\\RentCar.Models\\RentCar.Models.csproj": {
+                "projectPath": "C:\\Nermin_Eliyeva_git\\RentCar\\RentCar.Models\\RentCar.Models.csproj"
               }
             }
           }
@@ -71,14 +71,14 @@
         }
       }
     },
-    "C:\\C# Projects\\RentCar\\RentCar.Models\\RentCar.Models.csproj": {
+    "C:\\Nermin_Eliyeva_git\\RentCar\\RentCar.Models\\RentCar.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\C# Projects\\RentCar\\RentCar.Models\\RentCar.Models.csproj",
+        "projectUniqueName": "C:\\Nermin_Eliyeva_git\\RentCar\\RentCar.Models\\RentCar.Models.csproj",
         "projectName": "RentCar.Models",
-        "projectPath": "C:\\C# Projects\\RentCar\\RentCar.Models\\RentCar.Models.csproj",
+        "projectPath": "C:\\Nermin_Eliyeva_git\\RentCar\\RentCar.Models\\RentCar.Models.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\C# Projects\\RentCar\\RentCar.Models\\obj\\",
+        "outputPath": "C:\\Nermin_Eliyeva_git\\RentCar\\RentCar.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
