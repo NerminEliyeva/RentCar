@@ -1,0 +1,15 @@
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\bin\Debug\net5.0\RentCar.DAL.deps.json
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\bin\Debug\net5.0\RentCar.DAL.dll
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\bin\Debug\net5.0\RentCar.DAL.pdb
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\bin\Debug\net5.0\RentCar.Models.dll
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\bin\Debug\net5.0\RentCar.Models.pdb
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.csproj.AssemblyReference.cache
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.AssemblyInfoInputs.cache
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.AssemblyInfo.cs
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.csproj.CoreCompileInputs.cache
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.csproj.CopyComplete
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.dll
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\obj\Debug\net5.0\refint\RentCar.DAL.dll
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.pdb
+C:\Nermin_Eliyeva_git\RentCar\RentCar.DAL\obj\Debug\net5.0\ref\RentCar.DAL.dll
