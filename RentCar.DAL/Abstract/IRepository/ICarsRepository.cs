@@ -17,5 +17,7 @@ namespace RentCar.DAL.Abstract.IRepository
         bool SaveCar(Cars cars);
         bool SaveImage(List<Images> images);
         bool SaveNewMark(Marks mark);
+        bool SaveNewEngineType(EngineTypes engineType);
+        bool SaveNewCategory(Categories category);
     }
 }

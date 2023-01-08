@@ -4,9 +4,42 @@
         <h1>Kateqoriya əlavə edin</h1>
         <div class="addNewCategoryForm">
             <form action="">
-                <input type="text" placeholder="Kateqoriya">
-                  <button>Əlavə et</button>
+                <input type="text" placeholder="Kateqoriya" id="newCategory" >
+                  <button class="submitCategory">Əlavə et</button>
             </form>
         </div>
     </div>
 </div>
+
+
+<script>
+    $('.submitCategory').on("click",function(e) {
+    e.preventDefault()
+      var frontCategoryName = $("#newCategory").val();
+      console.log(frontCategoryName)
+        $.ajax({
+                 type: "POST",
+                 url: '@Url.Action("SaveNewCategory","Home")',
+                 data:{"categoryName":frontCategoryName},
+                 cache: false,
+                  dataType: "json",
+                 success:function (data) {
+                      Swal.fire({
+                             icon: 'success',
+                             title: 'Yeni ' + frontCategoryName + ' kateqoriyası əlavə olundu',
+                             showConfirmButton: false,
+                             timer: 1500
+                          })
+                   $("#newCategory").val("");
+                 },
+                 error: function () {
+                     Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Xəta baş verdi!',
+                          })
+                 }
+             });
+    });
+
+</script>

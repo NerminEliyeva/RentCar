@@ -425,7 +425,7 @@ nav {
     margin: auto;
     /* background-color: darkgreen; */
     display: flex;
-    min-height: 645px;
+    min-height: 635px;
 }
 
 .footer {
@@ -442,8 +442,9 @@ nav {
     width: 50%;
     margin: 30px auto;
     background-color: white;
-    border: 1px solid rgb(161, 161, 161);
     padding: 20px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .addelanform p {
@@ -465,7 +466,7 @@ nav {
     }
 
 .containersecimpenceresi {
-    min-height: 685px;
+    min-height: 635px;
 }
 
 .secimler {
@@ -663,7 +664,7 @@ nav {
 
 .divlist {
     width: 90%;
-    min-height: 645px;
+    min-height: 635px;
     margin: 100px auto;
     /* background-color: brown; */
 }

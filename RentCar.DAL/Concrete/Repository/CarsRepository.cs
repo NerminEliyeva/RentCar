@@ -90,6 +90,31 @@ namespace RentCar.DAL.Concrete.Repository
                 return false;
             }
         }
-
+        public bool SaveNewEngineType(EngineTypes engineType)
+        {
+            try
+            {
+                _dbcontext.EngineTypes.Add(engineType);
+                _dbcontext.SaveChanges();
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
+        public bool SaveNewCategory(Categories category)
+        {
+            try
+            {
+                _dbcontext.Categories.Add(category);
+                _dbcontext.SaveChanges();
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
     }
 }

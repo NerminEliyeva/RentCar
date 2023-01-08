@@ -76,26 +76,68 @@ namespace RentCar.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult SaveNewMark(string markName)
         {
-            var result = _rentCarService.SaveNewMarkService(markName);
-            return Ok(result);
+            var isOk = _rentCarService.SaveNewMarkService(markName);
+
+            if (isOk)
+            {
+                return Ok(isOk);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
+
         [HttpGet]
         public IActionResult AddNewModel()
         {
             return View();
         }
+
         [HttpGet]
         public IActionResult AddNewEngineType()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult SaveNewEngineType(string engineTypeName)
+        {
+            var isOk = _rentCarService.SaveNewEngineTypeService(engineTypeName);
+
+            if (isOk)
+            {
+                return Ok(isOk);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet]
         public IActionResult AddNewCategory()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult SaveNewCategory(string categoryName)
+        {
+            var isOk = _rentCarService.SaveNewCategoryService(categoryName);
+
+            if (isOk)
+            {
+                return Ok(isOk);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         #endregion

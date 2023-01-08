@@ -156,14 +156,47 @@ namespace RentCar.Services
 
         public bool SaveNewMarkService(string markName)
         {
+            if (string.IsNullOrEmpty(markName))
+            {
+                return false;
+            }
             var marks = new Marks()
             {
                 CreatedDate = DateTime.Now,
                 MarkName = markName
             };
-           // _carsRepository.SaveNewMark(marks); 
+            _carsRepository.SaveNewMark(marks); 
             return true;
         }
+        public bool SaveNewEngineTypeService(string engineTypeName)
+        {
+            if (string.IsNullOrEmpty(engineTypeName))
+            {
+                return false;
+            }
+            var engineType = new EngineTypes()
+            {
+                EngineTypeName = engineTypeName
+            };
+            _carsRepository.SaveNewEngineType(engineType);
+            return true;
+        }
+
+        public bool SaveNewCategoryService(string categoryName)
+        {
+            if (string.IsNullOrEmpty(categoryName))
+            {
+                return false;
+            }
+            var category = new Categories()
+            { 
+                CreatedDate = DateTime.Now,
+                CategoryName = categoryName
+            };
+            _carsRepository.SaveNewCategory(category);
+            return true;
+        }
+
 
         public CarDetails GetCarDetails(int id)
         {
