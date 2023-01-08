@@ -1,0 +1,99 @@
+﻿@model CarsViewModel
+
+<!-- masinlar olan sehife -->
+<div class="bodycontainer">
+    <div class="axtariscontainer">
+        <form>
+            <select class="selectmarka">
+                <option value="" selected disabled>MARKA</option>
+                @foreach (var item in Model.FilterData.FilterMarks)
+                {
+                    <option value="@item.MarkId">@item.MarkName</option>
+                }
+            </select>
+            <select class="selectmodel">
+                 <option value="" selected disabled>MODEL</option>
+                @*      @foreach (var modelim in Model.FilterData.FilterModels)
+                    {
+                    <option value="">@modelim.ModelName</option>
+                    }*@
+            </select>
+            <select>
+                <option value="" selected disabled>IL</option>
+                @foreach (var item in Model.FilterData.FilterYears)
+                {
+                    <option value="">@item</option>
+                }
+            </select>
+            <select>
+                <option value="" selected disabled>KATEQORİYA</option>
+                @foreach (var item in Model.FilterData.FilterCategories)
+                {
+                    <option value="">@item.CategoryName</option>
+                }
+            </select>
+            <div class="pricerange">
+                <p for="">Qiymət :</p>
+                <input type="text" placeholder="Min">
+                <input type="text" placeholder="Max">
+            </div>
+            <a href="">Axtar</a>
+        </form>
+    </div>
+
+    <div class="productcontainer">
+
+        @foreach (var item in Model.CardsInfo)
+        {
+            <div class="product">
+                <img src="@item.ImageBase64" alt="">
+                <div class="productbasliq">
+                    <div class="marka model">@item.Marka @item.Model</div>
+                    <div class="qiymet"><span>@item.Price</span>$ / gün</div>
+                </div>
+                <hr>
+                <div class="xususiyyetler">
+                    <ul>
+                        <li><i class="fa-solid fa-calendar-days"></i>@item.Year</li>
+                        <li><i class="fa-solid fa-road"></i>@item.EngineType</li>
+                        <li><i class="fa-solid fa-bolt"></i>@item.Volume <span>L</span></li>
+                    </ul>
+                </div>
+                <div class="icondetails">
+                    <a href="/Home/CarDetails/@item.CarId"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a><i class="fa-regular fa-heart"></i></a>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+<script>
+    $(".selectmarka").change(function(x) {
+
+        var selectedMarkVal = $( ".selectmarka option:selected" ).val();
+        $.ajax({
+                type: "Get",
+                url: '@Url.Action("GetModels","Home")',
+                data: {
+                id:selectedMarkVal
+                },
+                contentType: "application/json; charset=utf-8",
+                success: 
+                    function (returndata) {
+                    $(".selectmodel").children().remove().end()
+                      $(".selectmodel").append(`<option value="" selected disabled>MODEL</option>`)
+                    
+                    $.each(returndata,function(i,item){
+                        var option = new Option(item["modelName"],item["modelId"]);
+                        $(".selectmodel").append($(option))
+                    })
+                },
+                error: function () {
+                    alert("Error while inserting data");
+                }
+            });
+    });
+
+</script>

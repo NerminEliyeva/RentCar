@@ -1,0 +1,12 @@
+C:\C# Projects\RentCar\RentCar.Models\bin\Debug\net5.0\RentCar.Models.deps.json
+C:\C# Projects\RentCar\RentCar.Models\bin\Debug\net5.0\RentCar.Models.dll
+C:\C# Projects\RentCar\RentCar.Models\bin\Debug\net5.0\RentCar.Models.pdb
+C:\C# Projects\RentCar\RentCar.Models\obj\Debug\net5.0\RentCar.Models.csproj.AssemblyReference.cache
+C:\C# Projects\RentCar\RentCar.Models\obj\Debug\net5.0\RentCar.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\C# Projects\RentCar\RentCar.Models\obj\Debug\net5.0\RentCar.Models.AssemblyInfoInputs.cache
+C:\C# Projects\RentCar\RentCar.Models\obj\Debug\net5.0\RentCar.Models.AssemblyInfo.cs
+C:\C# Projects\RentCar\RentCar.Models\obj\Debug\net5.0\RentCar.Models.csproj.CoreCompileInputs.cache
+C:\C# Projects\RentCar\RentCar.Models\obj\Debug\net5.0\RentCar.Models.dll
+C:\C# Projects\RentCar\RentCar.Models\obj\Debug\net5.0\refint\RentCar.Models.dll
+C:\C# Projects\RentCar\RentCar.Models\obj\Debug\net5.0\RentCar.Models.pdb
+C:\C# Projects\RentCar\RentCar.Models\obj\Debug\net5.0\ref\RentCar.Models.dll

@@ -1,0 +1,75 @@
+﻿@using RentCar.Models.Models
+@model CarDetails
+
+@{
+    int imgId = 0;
+}
+<div class="detailscontainer">
+    <div class="carimgs">
+        <div class="top">
+            <button class="left"><i class="fa-solid fa-chevron-left"></i></button>
+            <img src="@Model.ImageBase64" alt="">
+            <button class="right"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div class="bottom">
+            <img src="@Model.ImageBase64" class="imgs" id="@imgId">
+           
+            @foreach (var item in Model.MultImageBase64)
+            {
+                imgId=imgId+1;
+                <img src="@item" alt="" class="imgs" id="@imgId">
+            }
+        </div>
+    </div>
+    <div class="cardetails">
+        <input type="hidden" value="@Model.CarId" id="hiddenCarid" />
+        <h1>@Model.Marka @Model.Model</h1>
+        <br>
+        <h2>@Model.Price AZN / gün</h2>
+        <div class="detailsxususiyyetler">
+            <ul>
+                <li><i class="fa-solid fa-calendar-days"></i>@Model.Year</li>
+                <li><i class="fa-solid fa-road"></i>@Model.EngineType</li>
+                <li><i class="fa-solid fa-bolt"></i>@Model.Volume<span> L</span></li>
+            </ul>
+        </div>
+        <div class="btnsifaris"><a href="">Sifariş et</a></div>
+    </div>
+
+</div>
+<script>
+    var asagi = document.querySelector(".bottom")
+    var sira = 0;
+    var boyuksekil = document.querySelector(".top img")
+    var sekiller = document.querySelectorAll(".imgs")
+
+    sekiller.forEach(x => {
+        x.addEventListener("click", function () {
+            boyuksekil.setAttribute("src", x.getAttribute("src"))
+            boyuksekil.setAttribute("id", x.getAttribute("id"))
+            sira = boyuksekil.id
+        })
+    });
+    var ireli = document.getElementsByClassName("right")[0]
+    var geri = document.getElementsByClassName("left")[0]
+
+    ireli.addEventListener("click", function () {
+        if (sira ==  @Model.MultImageBase64.Count) {
+            sira = 0
+        }
+        else {
+            sira++
+        }
+        boyuksekil.src = sekiller[sira].src
+
+    })
+    geri.addEventListener("click", function () {
+        if (sira == 0) {
+            sira =  @Model.MultImageBase64.Count
+        }
+        else {
+            sira--
+        }
+        boyuksekil.src = sekiller[sira].src
+    })
+</script>

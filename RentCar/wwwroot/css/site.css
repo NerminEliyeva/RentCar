@@ -1,0 +1,676 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f6f7fa;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    /* background-color: #8c0c0c; */
+    background-color: #3a4047;
+    border-bottom: 1px solid rgb(187, 187, 187);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    z-index: 2;
+}
+
+    nav span {
+        font-size: 26px;
+        font-weight: 600;
+        color: white;
+        background-color: #8c0c0c;
+        margin: 15px;
+        padding: 5px;
+        border-radius: 10px;
+        text-shadow: 1px 1px 2px black;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: space-around;
+    }
+
+        nav ul li {
+            list-style: none;
+            margin-left: 35px;
+            margin-top: 24px;
+            font-size: 20px;
+        }
+
+            nav ul li a {
+                text-decoration: none;
+                color: white;
+                text-shadow: 1px 1px 2px black;
+                transition: 0.5s;
+            }
+
+                nav ul li a:hover {
+                    border-bottom: 1px solid;
+                    border-color: white;
+                    color:white
+                }
+
+.profil {
+    margin-left: auto;
+    color: #f6f7fa;
+    text-align: center;
+    padding: 5px 10px 0px 0px;
+    text-shadow: 1px 1px 2px black;
+}
+
+    .profil img {
+        border-radius: 100px;
+        width: 45px;
+    }
+
+.productcontainer {
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: blue; */
+
+}
+
+.product {
+    width: 22%;
+    margin: 0px 0px 30px 25px;
+    border: 0.2px solid rgb(208, 207, 207);
+    cursor: pointer;
+    position: relative;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: white;
+    height:380px;
+}
+
+    .product img {
+        width: 100%;
+        height: 55%;
+    }
+
+    /* 
+.product .imgdetails {
+    width: 100%;
+    height: 55%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.product .imgdetails i {
+    margin: 10px;
+    font-size: 30px;
+    color: #f6f7fa;
+}
+
+.product .imgdetails:hover {
+    opacity: 1;
+} */
+
+    .product hr {
+        width: 25%;
+        margin: auto;
+    }
+
+.productbasliq {
+    padding: 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+    .productbasliq .qiymet {
+        color: #8c0c0c;
+        margin: 3px;
+        font-size: 18px;
+    }
+
+.xususiyyetler ul {
+    padding-top: 10px;
+    margin-bottom:5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style: none;
+    color: #333;
+}
+
+    .xususiyyetler ul li i {
+        margin: 5px;
+        color: #8c0c0c;
+    }
+
+.icondetails {
+    text-align: center;
+    font-size: 18px;
+}
+
+    .icondetails i {
+        margin: 5px;
+        padding: 5px;
+    }
+
+        .icondetails i:hover {
+            color: #8c0c0c;
+        }
+
+.axtariscontainer {
+    width: 15%;
+    height: 350px;
+    margin: 20px auto;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    border: 0.5px solid rgb(185, 185, 185);
+    font-size:16px;
+}
+
+    .axtariscontainer select {
+        width: 80%;
+/*      height: 20px;*/
+        margin: 10px auto;
+        border: none;
+        border: 0.5px solid;
+        border-color: rgb(178, 177, 177);
+    
+    }
+
+    .axtariscontainer .pricerange {
+        width:80%;
+      /* margin:auto;*/
+    }
+
+    .axtariscontainer .pricerange p{
+       margin-bottom:0px;
+       margin-top:10px;
+    }
+
+        .axtariscontainer .pricerange input {
+         /*   padding: 5px;*/
+          /*  margin: 10px 0px;*/
+            width: 48%;
+            border: none;
+            border: 0.5px solid;
+            border-color: rgb(178, 177, 177);
+        }
+
+    .axtariscontainer button {
+        width: 160px;
+        padding: 5px;
+        margin: 15px;
+        background-color: #2ea44f;
+        border: none;
+        border-radius: 5px;
+    }
+
+        .axtariscontainer button a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+        }
+
+.backgroundimg {
+    width: 100%;
+    height: 700px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 75%, #000 100%), url(https://www.alfaromeousa.com/content/dam/alfausa/BHP/desktop/AR-BHP-HERO-Desktop-gs.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+}
+
+    .backgroundimg .sloqan1 {
+        color: #f3f3f3;
+        font-size: 70px; 
+        font-family: 'Courier New', Courier, monospace;
+        position: absolute;
+        top: 250px;
+        left: 200px;
+        text-shadow: 1px 1px 2px black;
+        animation-name: sloqan1;
+        animation-duration: 2.5s;
+        animation-delay: 0.5s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+
+    .backgroundimg .sloqan2 {
+        color: #f3f3f3;
+        font-size: 70px;
+        font-family: 'Courier New', Courier, monospace;
+        position: absolute;
+        z-index: 0;
+        top: 350px;
+        left: 400px;
+        text-shadow: 1px 1px 2px black;
+        animation-name: sloqan2;
+        animation-duration: 2.5s;
+        animation-delay: 1s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+
+    .backgroundimg a {
+        width: 150px;
+        padding: 5px;
+        background-color: transparent;
+        position: relative;
+        top: 200px;
+        left: 1200px;
+        border: none;
+        font-size: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        color: white;
+        text-shadow: 1px 1px 2px black;
+        animation-name: arrow;
+        animation-duration: 2.5s;
+        animation-delay: 1.5s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+
+        .backgroundimg a:hover {
+            color: #8c0c0c;
+        }
+
+@keyframes sloqan1 {
+    from {
+        left: 100px;
+        opacity: 0;
+    }
+
+    to {
+        left: 200px;
+        opacity: 1;
+    }
+}
+
+@keyframes sloqan2 {
+    from {
+        left: 300px;
+        opacity: 0;
+    }
+
+    to {
+        left: 400px;
+        opacity: 1;
+    }
+}
+
+@keyframes arrow {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.body2 {
+    width: 80%;
+    margin:20px auto;
+    /* background-color: red; */
+    overflow:hidden;
+}
+
+    .body2 .div1 {
+        width: 100%;
+        display: flex;
+        background-color: white;
+    }
+
+    .body2 .yazi {
+        width: 50%;
+        text-align: center;
+        padding-top: 120px;
+    }
+
+        .body2 .yazi h3 {
+            margin-top: 100px;
+            font-size: 30px;
+            margin: auto;
+        }
+
+        .body2 .yazi p {
+            width: 60%;
+            margin: auto;
+            font-size: 16px;
+        }
+
+    .body2 .sekil {
+        width: 50%;
+        height: 350px;
+    }
+
+        .body2 .sekil img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+.anm1 .sekil {
+    animation-name: anmsag;
+    animation-delay: 0.5s;
+}
+
+.anm2 .yazi {
+    animation-name: anmsag;
+    animation-delay: 1.5s;
+}
+
+.anm3 .sekil {
+    animation-name: anmsag;
+    animation-delay: 2.5s;
+}
+
+.anm1 .yazi {
+    animation-name: anmsol;
+    animation-delay: 0.5s;
+}
+
+.anm2 .sekil {
+    animation-name: anmsol;
+    animation-delay: 1.5s;
+}
+
+.anm3 .yazi {
+    animation-name: anmsol;
+    animation-delay: 2.5s;
+}
+
+.body2 .yazi, .body2 .sekil {
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+ /*   opacity: 0;*/
+    position: relative;
+}
+
+@keyframes anmsag {
+    from {
+        right: -300px;
+        opacity: 0;
+    }
+
+    to {
+        right: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes anmsol {
+    from {
+        left: -300px;
+        opacity: 0;
+    }
+
+    to {
+        left: 0px;
+        opacity: 1;
+    }
+}
+
+
+.bodycontainer {
+    width: 90%;
+    margin: auto;
+    /* background-color: darkgreen; */
+    display: flex;
+    min-height: 645px;
+}
+
+.footer {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid rgb(187, 187, 187);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    background-color: #040404;
+    color: #f2f2f2;
+}
+
+.addelan {
+    width: 50%;
+    margin: 30px auto;
+    background-color: white;
+    border: 1px solid rgb(161, 161, 161);
+    padding: 20px;
+}
+
+.addelanform p{
+    margin-bottom: 0px;
+}
+
+.addelanform {
+    width: 50%;
+    margin: auto;
+    /* background-color: #2ea44f; */
+}
+
+    .addelanform select,
+    input,
+    textarea {
+        width: 100%;
+        margin: 10px auto;
+        padding: 5px;
+    }
+.containersecimpenceresi{
+
+    min-height: 685px;
+}
+.addcategory {
+    width: 50%;
+    margin: 30px auto;
+    background-color: white;
+    border: 1px solid rgb(161, 161, 161);
+    padding: 20px;
+    text-align:center;
+}
+
+.addcategoryform {
+    width: 50%;
+    margin: auto;
+}
+
+    .addcategoryform input {
+        width: 100%;
+        margin: 10px auto;
+        padding: 5px;
+    }
+
+.addelancategory h1 {
+    text-align: center;
+}
+
+.secimpenceresi {
+    text-align: center;
+    cursor: pointer;
+    margin: 20px;
+}
+.secimpenceresi a{
+   color:black;
+   text-decoration:none;
+}
+    .secimpenceresi span:hover {
+        border-bottom: 1px solid #8c0c0c;
+    }
+
+.detailscontainer {
+    width: 80%;
+    /* height: 600px; */
+    margin: 100px auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+    .detailscontainer .carimgs {
+        width: 60%;
+        padding: 10px 60px;
+    }
+
+.carimgs .top {
+    /* background-color: #8c0c0c; */
+    position: relative;
+    height: 80%;
+}
+
+    .carimgs .top img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: 0.2px solid gray;
+    }
+
+.carimgs button {
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    /* background-color: blue; */
+    width: 60px;
+    height: 100%;
+    cursor: pointer;
+}
+
+    .carimgs button:hover i {
+        text-shadow: white 2px 0 10px;
+    }
+
+.bottom::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: #8070d4;
+    border: 6px solid rgba(0, 0, 0, 0.2);
+}
+
+.carimgs .right {
+    right: 0px;
+}
+
+.carimgs .bottom {
+    max-width: 100%;
+    height: 20%;
+    border: 0.2px solid gray;
+    display: flex;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+/* .bottom::-webkit-scrollbar {
+    height: 4px;             
+    width: 4px;              
+    border: 1px solid #d5d5d5;
+  } */
+
+.bottom::-webkit-scrollbar {
+    height: 5px;
+    width: 4px;
+    background: rgb(221, 221, 221);
+    border: 0.2px solid gray;
+}
+
+.bottom::-webkit-scrollbar-thumb:horizontal {
+    background: rgb(36, 36, 36);
+    border-radius: 0px;
+}
+
+.activeimg {
+    border: 0.2px solid #8c0c0c;
+}
+
+.carimgs .bottom img {
+    width: 20%;
+    border: 0.2px solid gray;
+}
+
+.cardetails {
+    width: 40%;
+}
+
+    .cardetails .detailsxususiyyetler ul {
+        margin: 20px 0px;
+        padding: 5px;
+        list-style: none;
+        color: #333;
+        font-size: 20px;
+    }
+
+        .cardetails .detailsxususiyyetler ul li {
+            margin-right: 30px;
+        }
+
+            .cardetails .detailsxususiyyetler ul li i {
+                margin-right: 5px;
+                color: #8c0c0c;
+            }
+
+    .cardetails .btnsifaris {
+        width: 100%;
+        margin: auto;
+        text-align: center;
+        background-color: #2ea44f;
+        padding: 5px;
+    }
+
+        .cardetails .btnsifaris a {
+            color: white;
+            text-decoration: none;
+        }
+
+.divlist {
+    width: 90%;
+    min-height:645px;
+    margin: 100px auto;
+    /* background-color: brown; */
+}
+
+    .divlist img {
+        width: 100px;
+        object-fit: cover;
+    }
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+    table td, th {
+        padding: 5px;
+        border: 1px solid #ddd;
+    }
+
+    table thead {
+        background-color: #323232;
+        color: white;
+    }
+
+    table a {
+        text-decoration: none;
+        color: white;
+        padding: 3px 8px;
+        margin: 0px 5px;
+    }
+
+.btnedit {
+    background-color: #198754;
+}
+
+.btndelete {
+    background-color: #dc3545;
+}
+
+.btndetails {
+    background-color: #0d6efd;
+}

@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RentCar.DAL\RentCar.DAL.csproj" />
+    <ProjectReference Include="..\RentCar.Models\RentCar.Models.csproj" />
+  </ItemGroup>
+
+</Project>

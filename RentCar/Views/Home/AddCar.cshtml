@@ -1,0 +1,132 @@
+﻿@model RentCar.Models.Models.NewCarData
+
+<div class="addelancategory">
+    <div class="addelan">
+        <h1>Avtomobil əlavə edin</h1>
+        <div class="addelanform">
+            <form action="">
+                <select class="selectmarka">
+                    <option value="" selected disabled>MARKA</option>
+                    @foreach (var item in Model.Marks)
+                    {
+                        <option value="@item.MarkId">@item.MarkName</option>
+                    }
+                </select>
+                <select class="selectmodel">
+                    <option value="" selected disabled>MODEL</option>
+                    @*      @foreach (var modelim in Model.FilterData.FilterModels)
+                        {
+                        <option value="">@modelim.ModelName</option>
+                        }*@
+                </select>
+                <select class="selectcategory">
+                    <option value="" selected disabled>KATEQORIYA</option>
+                    @foreach (var item in Model.Categories)
+                    {
+                        <option value="@item.CategoryId">@item.CategoryName</option>
+                    }
+                </select>
+                <input class="inpprice" type="text" placeholder="Qiymət">
+                <input class="inpyear" type="text" placeholder="Buraxılış ili">
+                <select class="selectenginetype">
+                    <option value="" selected disabled>Mühərrik tipi</option>
+                    @foreach (var item in Model.EngineTypes)
+                    {
+                        <option value="@item.EngineTypeId">@item.EngineTypeName</option>
+                    }
+                </select>
+                <input class="inpvolume" type="text" placeholder="Mühərrik həcmi">
+                <p for="">Əsas şəkli seçin:</p>
+                <input type="file" class="mainImage">
+                <div class="photoarea">
+                </div>
+                <p for="">Şəkillər seçin:</p>
+                <input type="file" class="images" multiple>
+                <div class="photoarea">
+                </div>
+                <button type="submit" class="addNewCarSubmit">Təsdiqlə</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="secimpenceresi">
+        <a href="/Home/AddOption"> <span>Yeni seçim əlavə etmək istəyirsən?</span> </a>
+    </div>
+
+</div>
+<script>
+        //   document.querySelector(".secimpenceresi").addEventListener("click", function () {
+        //   document.querySelector(".addcategory").style.display = "block"
+        //})
+
+         $(".selectmarka").change(function(x) {
+            var selectedMarkVal = $( ".selectmarka option:selected" ).val();
+            console.log(selectedMarkVal);
+            $.ajax({
+                    type: "Get",
+                    url: '@Url.Action("GetModels","Home")',
+                    data: {
+                    id:selectedMarkVal
+                    },
+                    contentType: "application/json; charset=utf-8",
+                    success:
+                        function (returndata) {
+                        $(".selectmodel").children().remove().end()
+                          $(".selectmodel").append(`<option value="" selected disabled>MODEL</option>`)
+
+                        $.each(returndata,function(i,item){
+                            var option = new Option(item["modelName"],item["modelId"]);
+                            $(".selectmodel").append($(option))
+                        })
+                    },
+                    error: function () {
+                        alert("Error while inserting data");
+                    }
+                });
+        });
+
+    $('.addNewCarSubmit').on("click",function(e) {
+       e.preventDefault()
+
+        var marka = parseInt($( ".selectmarka option:selected" ).val());
+        var model = $( ".selectmodel option:selected" ).val();
+        var category = $( ".selectcategory option:selected" ).val();
+        var price = $(".inpprice").val();
+        var year = $(".inpyear").val();
+        var enginetype = $( ".selectenginetype option:selected" ).val();
+        var volume = $(".inpvolume").val();
+
+        var fileInput = $('.mainImage')[0];
+        var file = fileInput.files[0];
+
+        var formData = new FormData();
+            $.each($(".images")[0].files, function(i, file) {
+              formData.append('images', file);
+            });
+        formData.append("MarkId" ,marka);
+        formData.append("ModelId" , model);
+        formData.append("CaregoryId" ,category);
+        formData.append("Price" , price);
+        formData.append("Year" , year);
+        formData.append("EngineTypeId" , enginetype);
+        formData.append("Volume" , volume);
+        formData.append('MainImage',file);
+        console.log(formData);
+         $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SaveNewCar","Home")',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success:function (data) {
+                        alert("Successfully added");
+                    },
+                    error: function () {
+                        alert("Error while inserting data");
+                    }
+                });
+
+    });
+
+</script>

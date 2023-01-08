@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RentCar</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <nav>
+        <span>RENTCAR</span>
+        <ul>
+            <li><a href="/Home/Index">Ana səhifə</a></li>
+            <li><a href="/Home/CarsCardandFilter">Masınlar</a></li>
+            <li><a href="/Home/About">Haqqımızda</a></li>
+            <li><a href="/Home/AddCar">Elan yerləşdir</a></li>
+            <li><a href="/Home/List">List</a></li>
+        </ul>
+        <div class="profil">
+            <p>admin</p>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+    <div class="footer">
+        <span>Copyright © 2022 RENTCAR - Template by: Nərmin Əliyeva</span>
+    </div>
+
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

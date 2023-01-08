@@ -1,0 +1,15 @@
+C:\C# Projects\RentCar\RentCar.DAL\bin\Debug\net5.0\RentCar.DAL.deps.json
+C:\C# Projects\RentCar\RentCar.DAL\bin\Debug\net5.0\RentCar.DAL.dll
+C:\C# Projects\RentCar\RentCar.DAL\bin\Debug\net5.0\RentCar.DAL.pdb
+C:\C# Projects\RentCar\RentCar.DAL\bin\Debug\net5.0\RentCar.Models.dll
+C:\C# Projects\RentCar\RentCar.DAL\bin\Debug\net5.0\RentCar.Models.pdb
+C:\C# Projects\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.csproj.AssemblyReference.cache
+C:\C# Projects\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\C# Projects\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.AssemblyInfoInputs.cache
+C:\C# Projects\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.AssemblyInfo.cs
+C:\C# Projects\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.csproj.CoreCompileInputs.cache
+C:\C# Projects\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.csproj.CopyComplete
+C:\C# Projects\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.dll
+C:\C# Projects\RentCar\RentCar.DAL\obj\Debug\net5.0\refint\RentCar.DAL.dll
+C:\C# Projects\RentCar\RentCar.DAL\obj\Debug\net5.0\RentCar.DAL.pdb
+C:\C# Projects\RentCar\RentCar.DAL\obj\Debug\net5.0\ref\RentCar.DAL.dll
