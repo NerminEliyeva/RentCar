@@ -76,7 +76,6 @@ namespace RentCar.Services
         {
             return _carsRepository.GetModelsById(id);
         }
-
         public NewCarData GetDataForAddingNewCar()
         {
             var markas = _carsRepository.GetMarks();
