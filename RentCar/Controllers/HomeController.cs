@@ -57,7 +57,7 @@ namespace RentCar.Controllers
             var result = _rentCarService.GetDataForAddingNewCar();
             return View(result);
         }
-    
+
         [HttpPost]
         public IActionResult SaveNewCar([FromForm] SaveNewCarModel model)
         {
@@ -70,7 +70,29 @@ namespace RentCar.Controllers
         {
             return View();
         }
-#endregion
+
+        [HttpGet]
+        public IActionResult AddNewMark()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult AddNewModel()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult AddNewEngineType()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult AddNewCategory()
+        {
+            return View();
+        }
+
+        #endregion
         [HttpGet]
         public IActionResult List()
         {

@@ -3,11 +3,3 @@
 ################################################################################
 
 /.vs/RentCar
-/RentCar/obj
-/RentCar.DAL/bin/Debug/net5.0
-/RentCar/bin/Debug/net5.0
-/RentCar.Models/bin/Debug/net5.0
-/RentCar.Services/bin/Debug/net5.0
-/RentCar.Models/obj/Debug/net5.0
-/RentCar.Services/obj
-/RentCar.DAL/obj
