@@ -33,9 +33,7 @@ namespace RentCar.Services
             foreach (var car in cars)
             {
                 string fullPath = _carsRepository.GetMainImageByCarId(car.CarId);
-                byte[] imageArray = System.IO.File.ReadAllBytes(fullPath);
-                string image = Convert.ToBase64String(imageArray);
-                string imgDataURL = string.Format("data:image/jpeg;base64,{0}", image);
+                string imgDataURL = GetImageBase64FromPath(fullPath);
                 CardsInfo onecardInfo = new CardsInfo()
                 {
                     CarId = car.CarId,
@@ -46,7 +44,9 @@ namespace RentCar.Services
                     Model = models.Where(x => x.ModelId == car.ModelId).FirstOrDefault().ModelName,
                     EngineType = engientypes.Where(x => x.EngineTypeId == car.EngineTypeId).FirstOrDefault().EngineTypeName,
                     Category = categories.Where(x => x.CategoryId == car.CategoryId).FirstOrDefault().CategoryName,
-                    ImageBase64 = imgDataURL
+                    ImageBase64 = imgDataURL,
+                    CreatedDate = DateTime.Now,
+                    CreatedUser = "Nermin"
                 };
                 cardsInfos.Add(onecardInfo);
             }
@@ -72,6 +72,36 @@ namespace RentCar.Services
             return viewModel;
         }
 
+        public List<CardsInfo> GetListCarData()
+        {
+            List<CardsInfo> listData = new List<CardsInfo>();
+
+            var cars = _carsRepository.GetCars();
+            var markas = _carsRepository.GetMarks();
+            var models = _carsRepository.GetModels();
+            var engientypes = _carsRepository.GetEngineTypes();
+            var categories = _carsRepository.GetCategories();
+
+            foreach (var car in cars)
+            {
+                string fullPath = _carsRepository.GetMainImageByCarId(car.CarId);
+                string imgDataURL = GetImageBase64FromPath(fullPath);
+                CardsInfo oneListElement = new CardsInfo()
+                {
+                    CarId = car.CarId,
+                    Year = car.Year,
+                    Price = car.Price,
+                    Volume = car.EngineVolume,
+                    Marka = markas.Where(x => x.MarkId == car.MarkId).FirstOrDefault().MarkName,
+                    Model = models.Where(x => x.ModelId == car.ModelId).FirstOrDefault().ModelName,
+                    EngineType = engientypes.Where(x => x.EngineTypeId == car.EngineTypeId).FirstOrDefault().EngineTypeName,
+                    Category = categories.Where(x => x.CategoryId == car.CategoryId).FirstOrDefault().CategoryName,
+                    ImageBase64 = imgDataURL
+                };
+                listData.Add(oneListElement);
+            } 
+            return listData;
+        }
         public List<Models.Entities.Models> GetModels(int id)
         {
             return _carsRepository.GetModelsById(id);

@@ -159,7 +159,8 @@ namespace RentCar.Controllers
         [HttpGet]
         public IActionResult List()
         {
-            return View();
+            var result = _rentCarService.GetListCarData();
+            return View(result);
         }
 
         [HttpGet]

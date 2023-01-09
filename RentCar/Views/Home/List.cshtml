@@ -1,15 +1,17 @@
-﻿ <div class="divlist">
+﻿@using RentCar.Models.Models
+@model List<CardsInfo>
+
+ <div class="divlist">
         <table>
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Şekil</th>
+                    <th>Şəkil</th>
                     <th>Marka</th>
                     <th>Model</th>
                     <th>Kateqoriya</th>
                     <th>Qiymət</th>
                     <th>İl</th>
-                    <th>Yürüş</th>
                     <th>Mühərrik tipi</th>
                     <th>Mühərrik həcmi</th>
                     <th>Əlavə olunma vaxtı</th>
@@ -17,16 +19,17 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
+            <tbody>          
+                @foreach (var item in Model)
+               {
+                   <tr>
+                    <td></td>
                     <td><img src="/imgs/mustang1.webp" alt=""></td>
                     <td>Marka</td>
                     <td>Model</td>
                     <td>Ekanom</td>
                     <td>50 azn / gün</td>
                     <td>2012</td>
-                    <td>5000 km</td>
                     <td>Avtomat</td>
                     <td>2.0 l</td>
                     <td>02.02.22 01:01</td>
@@ -37,8 +40,9 @@
                         <a href="" class="btndetails"><i class="fa-solid fa-magnifying-glass"></i></a>
                     </td>
                 </tr>
+               }
                 <tr>
-                    <td>2</td>
+                    <td>1</td>
                     <td><img src="/imgs/mustang1.webp" alt=""></td>
                     <td>Marka</td>
                     <td>Model</td>

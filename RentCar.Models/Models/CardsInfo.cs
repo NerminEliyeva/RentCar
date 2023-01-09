@@ -17,6 +17,8 @@ namespace RentCar.Models.Models
         public string EngineType { get; set; }
         public double Volume { get; set; }
         public string ImageBase64 { get; set; }
+        public string CreatedUser { get; set; }
+        public DateTime CreatedDate { get; set; }
 
     }
 }

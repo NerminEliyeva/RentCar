@@ -33,7 +33,6 @@ namespace RentCar.DAL.Concrete.Repository
         {
             return (_dbcontext.Images.Where(x => x.ImageCarId == id && x.MainImage == 1).FirstOrDefault().FullPath);
         }
-
         public List<string> GetMultImageByCarId(int id)
         {
             return (_dbcontext.Images.Where(x => x.ImageCarId == id && x.MainImage == 0).Select(x => x.FullPath).ToList());
@@ -128,7 +127,5 @@ namespace RentCar.DAL.Concrete.Repository
                 return false;
             }
         }
-
-
     }
 }
