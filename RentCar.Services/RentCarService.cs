@@ -44,9 +44,8 @@ namespace RentCar.Services
                     Model = models.Where(x => x.ModelId == car.ModelId).FirstOrDefault().ModelName,
                     EngineType = engientypes.Where(x => x.EngineTypeId == car.EngineTypeId).FirstOrDefault().EngineTypeName,
                     Category = categories.Where(x => x.CategoryId == car.CategoryId).FirstOrDefault().CategoryName,
-                    ImageBase64 = imgDataURL,
-                    CreatedDate = DateTime.Now,
-                    CreatedUser = "Nermin"
+                    ImageBase64 = imgDataURL
+
                 };
                 cardsInfos.Add(onecardInfo);
             }
@@ -96,7 +95,9 @@ namespace RentCar.Services
                     Model = models.Where(x => x.ModelId == car.ModelId).FirstOrDefault().ModelName,
                     EngineType = engientypes.Where(x => x.EngineTypeId == car.EngineTypeId).FirstOrDefault().EngineTypeName,
                     Category = categories.Where(x => x.CategoryId == car.CategoryId).FirstOrDefault().CategoryName,
-                    ImageBase64 = imgDataURL
+                    ImageBase64 = imgDataURL,
+                    CreatedDate = DateTime.Now,
+                    CreatedUser = car.CreatedUser
                 };
                 listData.Add(oneListElement);
             } 
