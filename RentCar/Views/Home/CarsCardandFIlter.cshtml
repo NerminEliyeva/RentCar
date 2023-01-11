@@ -19,14 +19,14 @@
                     <option value="">@modelim.ModelName</option>
                     }*@
             </select>
-            <select>
+            <select class="selectyear">
                 <option value="" selected disabled>IL</option>
                 @foreach (var item in Model.FilterData.FilterYears)
                 {
                     <option value="">@item</option>
                 }
             </select>
-            <select>
+            <select class="selectcategory">
                 <option value="" selected disabled>KATEQORİYA</option>
                 @foreach (var item in Model.FilterData.FilterCategories)
                 {
@@ -35,10 +35,10 @@
             </select>
             <div class="pricerange">
                 <p for="">Qiymət :</p>
-                <input type="text" placeholder="Min">
-                <input type="text" placeholder="Max">
+                <input type="text" placeholder="Min" class="inpminprice" >
+                <input type="text" placeholder="Max"  class="inpminprice" >
             </div>
-            <a href="">Axtar</a>
+            <div class="btnaxtar"><a href="">Axtar</a></div> 
         </form>
     </div>
 
@@ -48,6 +48,7 @@
         {
             <div class="product">
                 <img src="@item.ImageBase64" alt="">
+                <div class="imgdetails"><a href="/Home/CarDetails/@item.CarId"><i class="fa-solid fa-magnifying-glass"></i></a></div>
                 <div class="productbasliq">
                     <div class="marka model">@item.Marka @item.Model</div>
                     <div class="qiymet"><span>@item.Price</span>$ / gün</div>
@@ -60,10 +61,6 @@
                         <li><i class="fa-solid fa-bolt"></i>@item.Volume <span>L</span></li>
                     </ul>
                 </div>
-                <div class="icondetails">
-                    <a href="/Home/CarDetails/@item.CarId"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    <a><i class="fa-regular fa-heart"></i></a>
-                </div>
             </div>
         }
 
@@ -71,8 +68,9 @@
 </div>
 
 <script>
-    $(".selectmarka").change(function(x) {
+    //filterde markaya uygun modelin gelmesi 
 
+    $(".selectmarka").change(function(x) {
         var selectedMarkVal = $( ".selectmarka option:selected" ).val();
         $.ajax({
                 type: "Get",
@@ -97,4 +95,54 @@
             });
     });
 
+    //filterleme prosesi
+        $('.addNewCarSubmit').on("click",function(e) {
+       e.preventDefault()
+
+        var marka = parseInt($( ".selectmarka option:selected" ).val());
+        var model = $( ".selectmodel option:selected" ).val();
+        var category = $( ".selectcategory option:selected" ).val();
+        var price = $(".inpprice").val();
+        var year = $(".inpyear").val();
+        var enginetype = $( ".selectenginetype option:selected" ).val();
+        var volume = $(".inpvolume").val();
+
+        var fileInput = $('.mainImage')[0];
+        var file = fileInput.files[0];
+
+        var formData = new FormData();
+            $.each($(".images")[0].files, function(i, file) {
+              formData.append('images', file);
+            });
+        formData.append("MarkId" ,marka);
+        formData.append("ModelId" , model);
+        formData.append("CaregoryId" ,category);
+        formData.append("Price" , price);
+        formData.append("Year" , year);
+        formData.append("EngineTypeId" , enginetype);
+        formData.append("Volume" , volume);
+        formData.append('MainImage',file);
+        console.log(formData);
+         $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SaveNewCar","Home")',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success:function (data) {
+                        Swal.fire({    
+                                icon: 'success',
+                                title: 'Yeni maşın əlavə olundu',
+                                showConfirmButton: false,
+                                timer: 1500
+                             })
+                    },
+                    error: function () {
+                        alert("Error while inserting data");
+                    }
+                });
+    });
+
 </script>
+

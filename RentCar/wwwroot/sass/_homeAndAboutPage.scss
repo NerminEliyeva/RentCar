@@ -1,0 +1,211 @@
+﻿$color_1: #f3f3f3;
+$color_2: white;
+$color_3: #8c0c0c;
+$font-family_1: 'Courier New', Courier, monospace;
+$background-color_1: transparent;
+$background-color_2: white;
+
+@keyframes sloqan1 {
+    from {
+        left: 100px;
+        opacity: 0;
+    }
+
+    to {
+        left: 200px;
+        opacity: 1;
+    }
+}
+
+@keyframes sloqan2 {
+    from {
+        left: 300px;
+        opacity: 0;
+    }
+
+    to {
+        left: 400px;
+        opacity: 1;
+    }
+}
+
+@keyframes arrow {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes anmsag {
+    from {
+        right: -300px;
+        opacity: 0;
+    }
+
+    to {
+        right: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes anmsol {
+    from {
+        left: -300px;
+        opacity: 0;
+    }
+
+    to {
+        left: 0px;
+        opacity: 1;
+    }
+}
+
+.backgroundimg {
+    width: 100%;
+    height: 700px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 75%, #000 100%), url(https://www.alfaromeousa.com/content/dam/alfausa/BHP/desktop/AR-BHP-HERO-Desktop-gs.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+
+    .sloqan1 {
+        color: $color_1;
+        font-size: 70px;
+        font-family: $font-family_1;
+        position: absolute;
+        top: 250px;
+        left: 200px;
+        text-shadow: 1px 1px 2px black;
+        animation-name: sloqan1;
+        animation-duration: 2.5s;
+        animation-delay: 0.5s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+
+    .sloqan2 {
+        color: $color_1;
+        font-size: 70px;
+        font-family: $font-family_1;
+        position: absolute;
+        z-index: 0;
+        top: 350px;
+        left: 400px;
+        text-shadow: 1px 1px 2px black;
+        animation-name: sloqan2;
+        animation-duration: 2.5s;
+        animation-delay: 1s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+
+    a {
+        width: 150px;
+        padding: 5px;
+        background-color: $background-color_1;
+        position: relative;
+        top: 200px;
+        left: 1200px;
+        border: none;
+        font-size: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        color: $color_2;
+        text-shadow: 1px 1px 2px black;
+        animation-name: arrow;
+        animation-duration: 2.5s;
+        animation-delay: 1.5s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+
+        &:hover {
+            color: $color_3;
+        }
+    }
+}
+
+.body2 {
+    width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+
+    .div1 {
+        width: 100%;
+        display: flex;
+        background-color: $background-color_2;
+    }
+
+    .yazi {
+        width: 50%;
+        text-align: center;
+        padding-top: 120px;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        position: relative;
+
+        h3 {
+            margin-top: 100px;
+            font-size: 30px;
+            margin: auto;
+        }
+
+        p {
+            width: 60%;
+            margin: auto;
+            font-size: 16px;
+        }
+    }
+
+    .sekil {
+        width: 50%;
+        height: 350px;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+    }
+
+    .anm1 {
+        .sekil {
+            animation-name: anmsag;
+            animation-delay: 0.5s;
+        }
+
+        .yazi {
+            animation-name: anmsol;
+            animation-delay: 0.5s;
+        }
+    }
+
+    .anm2 {
+        .yazi {
+            animation-name: anmsag;
+            animation-delay: 1.5s;
+        }
+
+        .sekil {
+            animation-name: anmsol;
+            animation-delay: 1.5s;
+        }
+    }
+
+    .anm3 {
+        .sekil {
+            animation-name: anmsag;
+            animation-delay: 2.5s;
+        }
+
+        .yazi {
+            animation-name: anmsol;
+            animation-delay: 2.5s;
+        }
+    }
+}

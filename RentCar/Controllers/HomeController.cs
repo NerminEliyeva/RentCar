@@ -13,10 +13,6 @@ namespace RentCar.Controllers
             _rentCarService = rentCarService;
         }
 
-        /// <summary>
-        /// sehife acilan kimi isleyecek metod 
-        /// </summary>
-        /// <returns></returns>
         [HttpGet]
         public IActionResult Index()
         {
@@ -31,13 +27,13 @@ namespace RentCar.Controllers
 
         #region Kartlar ve filterler
 
-
-        /// <summary>
-        /// masinlari ve filteri gosteren sehife
-        /// </summary>
-        /// <returns></returns>
         [HttpGet]
         public IActionResult CarsCardAndFilter()
+        {
+            return View(_rentCarService.GetCardsAndFilterInfo());
+        }
+        [HttpPost]
+        public IActionResult GetFilterData()
         {
             return View(_rentCarService.GetCardsAndFilterInfo());
         }
