@@ -32,10 +32,12 @@ namespace RentCar.Controllers
         {
             return View(_rentCarService.GetCardsAndFilterInfo());
         }
-        [HttpPost]
-        public IActionResult GetFilterData()
+
+        [HttpGet]
+        public IActionResult GetFilterData(ShowFilteredData model)
         {
-            return View(_rentCarService.GetCardsAndFilterInfo());
+            var result=_rentCarService.FilterDataService(model);
+            return Ok(result);
         }
 
         [HttpGet]

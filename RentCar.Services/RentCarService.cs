@@ -45,7 +45,6 @@ namespace RentCar.Services
                     EngineType = engientypes.Where(x => x.EngineTypeId == car.EngineTypeId).FirstOrDefault().EngineTypeName,
                     Category = categories.Where(x => x.CategoryId == car.CategoryId).FirstOrDefault().CategoryName,
                     ImageBase64 = imgDataURL
-
                 };
                 cardsInfos.Add(onecardInfo);
             }
@@ -70,7 +69,62 @@ namespace RentCar.Services
             };
             return viewModel;
         }
+        public List<CardsInfo> FilterDataService(ShowFilteredData model)
+        {
 
+            List<CardsInfo> cardsInfos = new List<CardsInfo>();
+
+            var cars = _carsRepository.GetCars();
+            var markas = _carsRepository.GetMarks();
+            var models = _carsRepository.GetModels();
+            var engientypes = _carsRepository.GetEngineTypes();
+            var categories = _carsRepository.GetCategories();
+
+            if (model.FilterMarkaId!=0)
+            {
+              cars = cars.Where(x=>x.MarkId==model.FilterMarkaId).ToList() ;
+            }
+            if (model.FilterModelId != 0)
+            {
+                cars = cars.Where(x => x.ModelId == model.FilterModelId).ToList();
+            }
+            if (model.FilterCategoryId != 0)
+            {
+                cars = cars.Where(x => x.CategoryId == model.FilterCategoryId).ToList();
+            }
+            if (model.FilterYear != 0)
+            {
+                cars = cars.Where(x => x.Year == model.FilterYear).ToList();
+            }
+            if (model.MinPrice != 0)
+            {
+                cars = cars.Where(x => x.Price >= model.MinPrice).ToList();
+            }
+            if (model.MaxPrice != 0)
+            {
+                cars = cars.Where(x => x.Price <= model.MaxPrice).ToList();
+            }
+
+            foreach (var car in cars)
+            {
+                string fullPath = _carsRepository.GetMainImageByCarId(car.CarId);
+                string imgDataURL = GetImageBase64FromPath(fullPath);
+                CardsInfo onecardInfo = new CardsInfo()
+                {
+                    CarId = car.CarId,
+                    Year = car.Year,
+                    Price = car.Price,
+                    Volume = car.EngineVolume,
+                    Marka = markas.Where(x => x.MarkId == car.MarkId).FirstOrDefault().MarkName,
+                    Model = models.Where(x => x.ModelId == car.ModelId).FirstOrDefault().ModelName,
+                    EngineType = engientypes.Where(x => x.EngineTypeId == car.EngineTypeId).FirstOrDefault().EngineTypeName,
+                    Category = categories.Where(x => x.CategoryId == car.CategoryId).FirstOrDefault().CategoryName,
+                    ImageBase64 = imgDataURL
+                };
+                cardsInfos.Add(onecardInfo);
+            }
+            return cardsInfos;      
+        }
         public List<CardsInfo> GetListCarData()
         {
             List<CardsInfo> listData = new List<CardsInfo>();
@@ -125,7 +179,6 @@ namespace RentCar.Services
             };
             return newCarData;
         }
-
         public bool SaveNewCarService(SaveNewCarModel model)
         {
             var cars = new Cars()
@@ -188,7 +241,6 @@ namespace RentCar.Services
             _carsRepository.SaveImage(images);
             return true;
         }
-
         public bool SaveNewMarkService(string markName)
         {
             if (string.IsNullOrEmpty(markName))
@@ -216,7 +268,6 @@ namespace RentCar.Services
             _carsRepository.SaveNewEngineType(engineType);
             return true;
         }
-
         public bool SaveNewCategoryService(string categoryName)
         {
             if (string.IsNullOrEmpty(categoryName))
@@ -231,7 +282,6 @@ namespace RentCar.Services
             _carsRepository.SaveNewCategory(category);
             return true;
         }
-
         public bool SaveNewModelService(string modelName,int markId)
         {
             if (string.IsNullOrEmpty(modelName))
@@ -247,7 +297,6 @@ namespace RentCar.Services
             _carsRepository.SaveNewModel(model);
             return true;
         }
-
         public CarDetails GetCarDetails(int id)
         {
             var rowCar = _carsRepository.GetCarById(id);
@@ -283,7 +332,6 @@ namespace RentCar.Services
             };
             return carDetails;
         }
-
         public string GetImageBase64FromPath(string fullPath)
         {
             byte[] imageArray = System.IO.File.ReadAllBytes(fullPath);

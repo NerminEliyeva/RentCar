@@ -17,7 +17,7 @@ namespace RentCar.Services.Interfaces
         bool SaveNewCategoryService(string categoryName);
         bool SaveNewModelService(string modelName, int markId);
         List<Marks> GetMarks();
-
         List<CardsInfo> GetListCarData();
+        List<CardsInfo> FilterDataService(ShowFilteredData model);
     }
 }

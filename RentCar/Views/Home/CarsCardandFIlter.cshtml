@@ -23,14 +23,14 @@
                 <option value="" selected disabled>IL</option>
                 @foreach (var item in Model.FilterData.FilterYears)
                 {
-                    <option value="">@item</option>
+                    <option value="@item">@item</option>
                 }
             </select>
             <select class="selectcategory">
                 <option value="" selected disabled>KATEQORİYA</option>
                 @foreach (var item in Model.FilterData.FilterCategories)
                 {
-                    <option value="">@item.CategoryName</option>
+                    <option value="@item.CategoryId">@item.CategoryName</option>
                 }
             </select>
             <div class="pricerange">
@@ -52,6 +52,7 @@
                 <div class="productbasliq">
                     <div class="marka model">@item.Marka @item.Model</div>
                     <div class="qiymet"><span>@item.Price</span>$ / gün</div>
+                    @item.Category
                 </div>
                 <hr>
                 <div class="xususiyyetler">
@@ -68,8 +69,8 @@
 </div>
 
 <script>
-    //filterde markaya uygun modelin gelmesi 
 
+    //filterde markaya uygun modelin gelmesi 
     $(".selectmarka").change(function(x) {
         var selectedMarkVal = $( ".selectmarka option:selected" ).val();
         $.ajax({
@@ -96,48 +97,38 @@
     });
 
     //filterleme prosesi
-        $('.addNewCarSubmit').on("click",function(e) {
+        $('.btnaxtar').on("click",function(e) {
        e.preventDefault()
 
-        var marka = parseInt($( ".selectmarka option:selected" ).val());
+        var marka = $( ".selectmarka option:selected" ).val();
         var model = $( ".selectmodel option:selected" ).val();
+        var year = $( ".selectyear option:selected" ).val();
         var category = $( ".selectcategory option:selected" ).val();
-        var price = $(".inpprice").val();
-        var year = $(".inpyear").val();
-        var enginetype = $( ".selectenginetype option:selected" ).val();
-        var volume = $(".inpvolume").val();
+        var minPrice = $(".inpminprice").val();
+        var maxPrice = $(".inpmaxprice").val();
+        var  model ={
+                 "filterMarkaId": marka,
+                 "filterModelId":  model,
+                 "filterCategoryId": category,
+                 "minPrice":  minPrice,
+                 "maxPrice":  maxPrice,
+                 "filterYear": year,
+        };
 
-        var fileInput = $('.mainImage')[0];
-        var file = fileInput.files[0];
-
-        var formData = new FormData();
-            $.each($(".images")[0].files, function(i, file) {
-              formData.append('images', file);
-            });
-        formData.append("MarkId" ,marka);
-        formData.append("ModelId" , model);
-        formData.append("CaregoryId" ,category);
-        formData.append("Price" , price);
-        formData.append("Year" , year);
-        formData.append("EngineTypeId" , enginetype);
-        formData.append("Volume" , volume);
-        formData.append('MainImage',file);
-        console.log(formData);
          $.ajax({
-                    type: "POST",
-                    url: '@Url.Action("SaveNewCar","Home")',
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success:function (data) {
-                        Swal.fire({    
-                                icon: 'success',
-                                title: 'Yeni maşın əlavə olundu',
-                                showConfirmButton: false,
-                                timer: 1500
-                             })
-                    },
+                    type: "Get",
+                    url: '@Url.Action("GetFilterData","Home")',
+                    data: model,
+                    dataType:"json",
+                    success:function (returndata) {
+                    $(".productcontainer").children().remove().end()
+                      $(".selectmodel").append(``)
+                    
+                    $.each(returndata,function(i,item){
+                        var option = new Option(item["modelName"],item["modelId"]);
+                        $(".selectmodel").append($(option))
+                    })
+                },
                     error: function () {
                         alert("Error while inserting data");
                     }
