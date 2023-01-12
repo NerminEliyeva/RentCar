@@ -43,14 +43,14 @@
     </div>
 
     <div class="productcontainer">
-
         @foreach (var item in Model.CardsInfo)
         {
             <div class="product">
                 <img src="@item.ImageBase64" alt="">
                 <div class="imgdetails"><a href="/Home/CarDetails/@item.CarId"><i class="fa-solid fa-magnifying-glass"></i></a></div>
                 <div class="productbasliq">
-                    <div class="marka model">@item.Marka @item.Model</div>
+                    <div class="marka">@item.Marka </div>
+                    <div class="model">@item.Model </div>
                     <div class="qiymet"><span>@item.Price</span>$ / gün</div>
                     @item.Category
                 </div>
@@ -64,7 +64,6 @@
                 </div>
             </div>
         }
-
     </div>
 </div>
 
@@ -121,14 +120,12 @@
                     data: model,
                     dataType:"json",
                     success:function (returndata) {
-                    $(".productcontainer").children().remove().end()
-                      $(".selectmodel").append(``)
-                    
-                    $.each(returndata,function(i,item){
-                        var option = new Option(item["modelName"],item["modelId"]);
-                        $(".selectmodel").append($(option))
+                    returndata.forEach(function(element){
+                        console.log( element.carId)
+
+
                     })
-                },
+                    },
                     error: function () {
                         alert("Error while inserting data");
                     }
