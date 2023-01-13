@@ -48,7 +48,7 @@ namespace RentCar.Controllers
 
         #endregion
 
-        #region Yeni Masin ve Secim elave etmek
+        #region Yeni Masin ve Secim elave etmek deyismek
         [HttpGet]
         public IActionResult AddCar()
         {
@@ -61,6 +61,13 @@ namespace RentCar.Controllers
         {
             var result = _rentCarService.SaveNewCarService(model);
             return Ok(result);
+        }
+
+
+        [HttpGet]
+        public IActionResult EditCar(int id)
+        {
+            return View();
         }
 
         [HttpGet]
@@ -154,6 +161,14 @@ namespace RentCar.Controllers
         }
 
         #endregion
+
+        [HttpGet]
+        public IActionResult DeleteCar(int id)
+        {
+
+            return View();
+        }
+
         [HttpGet]
         public IActionResult List()
         {

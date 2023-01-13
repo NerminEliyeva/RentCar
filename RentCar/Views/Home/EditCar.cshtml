@@ -1,0 +1,54 @@
+﻿
+
+<div class="addelancategory">
+    <div class="addelan">
+        <h1>Avtomobil əlavə edin</h1>
+        <div class="addelanform">
+            <form action="">
+                <select class="selectmarka">
+                    <option value="" selected disabled>MARKA</option>
+                    @foreach (var item in Model.Marks)
+                    {
+                        <option value="@item.MarkId">@item.MarkName</option>
+                    }
+                </select>
+                <select class="selectmodel">
+                    <option value="" selected disabled>MODEL</option>
+                    @*      @foreach (var modelim in Model.FilterData.FilterModels)
+                        {
+                        <option value="">@modelim.ModelName</option>
+                        }*@
+                </select>
+                <select class="selectcategory">
+                    <option value="" selected disabled>KATEQORIYA</option>
+                    @foreach (var item in Model.Categories)
+                    {
+                        <option value="@item.CategoryId">@item.CategoryName</option>
+                    }
+                </select>
+                <input class="inpprice" type="text" placeholder="Qiymət">
+                <input class="inpyear" type="text" placeholder="Buraxılış ili">
+                <select class="selectenginetype">
+                    <option value="" selected disabled>Mühərrik tipi</option>
+                    @foreach (var item in Model.EngineTypes)
+                    {
+                        <option value="@item.EngineTypeId">@item.EngineTypeName</option>
+                    }
+                </select>
+                <input class="inpvolume" type="text" placeholder="Mühərrik həcmi">
+                <p for="">Əsas şəkli seçin:</p>
+                <input type="file" class="mainImage">
+                <div class="photoarea">
+                </div>
+                <p for="">Şəkillər seçin:</p>
+                <input type="file" class="images" multiple>
+            @*    <div class="photoarea">
+                        <div class="item" attrid="">
+                            <img src="" alt="">
+                        </div>
+                </div>  *@
+                <button type="submit" class="addNewCarSubmit">Təsdiqlə</button>
+            </form>
+        </div>
+    </div>
+</div>

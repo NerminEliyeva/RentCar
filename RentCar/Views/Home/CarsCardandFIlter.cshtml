@@ -6,14 +6,16 @@
     <div class="axtariscontainer">
         <form>
             <select class="selectmarka">
-                <option value="" selected disabled>MARKA</option>
+                <option value="-1" selected disabled>MARKA</option>
+                <option value="0">Hamısı</option>
                 @foreach (var item in Model.FilterData.FilterMarks)
                 {
                     <option value="@item.MarkId">@item.MarkName</option>
                 }
             </select>
             <select class="selectmodel">
-                 <option value="" selected disabled>MODEL</option>
+                <option value="" selected disabled>MODEL</option>
+                <option value="0">Hamısı</option>
                 @*      @foreach (var modelim in Model.FilterData.FilterModels)
                     {
                     <option value="">@modelim.ModelName</option>
@@ -21,6 +23,8 @@
             </select>
             <select class="selectyear">
                 <option value="" selected disabled>IL</option>
+               <option value="0">Hamısı</option>
+
                 @foreach (var item in Model.FilterData.FilterYears)
                 {
                     <option value="@item">@item</option>
@@ -28,6 +32,8 @@
             </select>
             <select class="selectcategory">
                 <option value="" selected disabled>KATEQORİYA</option>
+               <option value="0">Hamısı</option>
+
                 @foreach (var item in Model.FilterData.FilterCategories)
                 {
                     <option value="@item.CategoryId">@item.CategoryName</option>
@@ -35,10 +41,10 @@
             </select>
             <div class="pricerange">
                 <p for="">Qiymət :</p>
-                <input type="text" placeholder="Min" class="inpminprice" >
-                <input type="text" placeholder="Max"  class="inpminprice" >
+                <input type="text" placeholder="Min" class="inpminprice">
+                <input type="text" placeholder="Max" class="inpmaxprice">
             </div>
-            <div class="btnaxtar"><a href="">Axtar</a></div> 
+            <div class="btnaxtar"><a href="">Axtar</a></div>
         </form>
     </div>
 
@@ -49,11 +55,10 @@
                 <img src="@item.ImageBase64" alt="">
                 <div class="imgdetails"><a href="/Home/CarDetails/@item.CarId"><i class="fa-solid fa-magnifying-glass"></i></a></div>
                 <div class="productbasliq">
-                    <div class="marka">@item.Marka </div>
-                    <div class="model">@item.Model </div>
+                    <div class="marka">@item.Marka @item.Model </div>
                     <div class="qiymet"><span>@item.Price</span>$ / gün</div>
-                    @item.Category
                 </div>
+                <div class="kateqoriya">@item.Category</div>
                 <hr>
                 <div class="xususiyyetler">
                     <ul>
@@ -69,7 +74,7 @@
 
 <script>
 
-    //filterde markaya uygun modelin gelmesi 
+    //filterde markaya uygun modelin gelmesi
     $(".selectmarka").change(function(x) {
         var selectedMarkVal = $( ".selectmarka option:selected" ).val();
         $.ajax({
@@ -79,11 +84,11 @@
                 id:selectedMarkVal
                 },
                 contentType: "application/json; charset=utf-8",
-                success: 
+                success:
                     function (returndata) {
                     $(".selectmodel").children().remove().end()
                       $(".selectmodel").append(`<option value="" selected disabled>MODEL</option>`)
-                    
+
                     $.each(returndata,function(i,item){
                         var option = new Option(item["modelName"],item["modelId"]);
                         $(".selectmodel").append($(option))
@@ -97,7 +102,7 @@
 
     //filterleme prosesi
         $('.btnaxtar').on("click",function(e) {
-       e.preventDefault()
+        e.preventDefault()
 
         var marka = $( ".selectmarka option:selected" ).val();
         var model = $( ".selectmodel option:selected" ).val();
@@ -120,11 +125,42 @@
                     data: model,
                     dataType:"json",
                     success:function (returndata) {
-                    returndata.forEach(function(element){
-                        console.log( element.carId)
+                        let cardHtml =`
+                  <div class="product">
+                <img src="ImageBase64" alt="" class="cardImage">
+                <div class="imgdetails"><a href="/Home/CarDetails/CarId"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                <div class="productbasliq">
+                    <div class="marka">Markaa Modell</div>
+                    <div class="qiymet"><span>Price</span>$ / gün</div>
+                    Category
+                </div>
+                <hr>
+                <div class="xususiyyetler">
+                    <ul>
+                        <li><i class="fa-solid fa-calendar-days"></i>Year</li>
+                        <li><i class="fa-solid fa-road"></i>EngineType</li>
+                        <li><i class="fa-solid fa-bolt"></i>Volume <span>L</span></li>
+                    </ul>
+                </div>
+            </div>
+           `;
+                   $(".productcontainer").children().remove().end()
 
-
-                    })
+                    returndata.forEach(function(ele){
+                             let textHtml =cardHtml;
+                             textHtml =textHtml.replace("ImageBase64",ele.imageBase64)
+                             textHtml =textHtml.replace("Markaa",ele.marka)
+                             textHtml =textHtml.replace("CarId",ele.carId);
+                             textHtml =textHtml.replace("Markaa",ele.marka);
+                             textHtml =textHtml.replace("Modell",ele.model);
+                             textHtml =textHtml.replace("Price",ele.price);
+                             textHtml =textHtml.replace("Category",ele.category);
+                             textHtml =textHtml.replace("Year",ele.year);
+                             textHtml =textHtml.replace("EngineType",ele.engineType);
+                             textHtml =textHtml.replace("Volume",ele.volume);
+                             $(".productcontainer").append(textHtml)
+                         });
+      
                     },
                     error: function () {
                         alert("Error while inserting data");

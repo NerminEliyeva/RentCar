@@ -68,23 +68,25 @@ $background-color_4: #4CAF50;
 
 .containersecimpenceresi {
     min-height: 635px;
-    padding: 80px;
+    display: flex;
+    align-items: center;
 
     .secimler {
         width: 80%;
         margin: auto;
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
         justify-content: space-around;
 
         .addNewOption {
             text-align: center;
             background-color: $background-color_3;
             width: 34%;
-            height: 80px;
-            margin-top: 50px;
+            height: 100px;
+            margin-bottom: 80px;
             color: $color_1;
-            padding-top: 20px;
+            padding-top: 35px;
             border-radius: 10px;
             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 

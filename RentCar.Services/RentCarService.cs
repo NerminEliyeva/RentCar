@@ -340,5 +340,26 @@ namespace RentCar.Services
             string imgDataURL = string.Format("data:image/{0};base64,{1}", extention, image);
             return imgDataURL;
         }
+
+        public Cars DeleteCar(int id)
+        {
+            var car  =  _carsRepository.GetCarById(id);
+            Cars myCar = new Cars()
+            {
+                CarId = car.CarId,
+                CategoryId = car.CategoryId,
+                CreatedDate = DateTime.Now,
+                CreatedUser = car.CreatedUser,
+                EngineTypeId = car.EngineTypeId,
+                EngineVolume = car.EngineVolume,
+                MarkId = car.MarkId,
+                ModelId = car.ModelId,
+                Price = car.Price,
+                Year = car.Year,
+                Status = 0
+            };
+            
+           return null;
+        }
     }
 }
