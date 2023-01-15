@@ -36,7 +36,7 @@ namespace RentCar.Controllers
         [HttpGet]
         public IActionResult GetFilterData(ShowFilteredData model)
         {
-            var result=_rentCarService.FilterDataService(model);
+            var result = _rentCarService.FilterDataService(model);
             return Ok(result);
         }
 
@@ -104,9 +104,9 @@ namespace RentCar.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveNewModel(string modelName,int markId)
+        public IActionResult SaveNewModel(string modelName, int markId)
         {
-            var isOk = _rentCarService.SaveNewModelService(modelName,markId);
+            var isOk = _rentCarService.SaveNewModelService(modelName, markId);
 
             if (isOk)
             {
@@ -162,11 +162,12 @@ namespace RentCar.Controllers
 
         #endregion
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult DeleteCar(int id)
         {
-
-            return View();
+            var result = _rentCarService.DeleteCar(id);
+            if (result) return Ok(result);
+            else return BadRequest();
         }
 
         [HttpGet]

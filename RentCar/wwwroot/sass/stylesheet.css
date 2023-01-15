@@ -77,7 +77,7 @@ nav .profil a {
   position: relative;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   background-color: white;
-  height: 330px;
+  height: 340px;
 }
 .bodycontainer .productcontainer .product img {
   width: 100%;
@@ -112,6 +112,18 @@ nav .profil a {
   left: 0;
   color: white;
   text-shadow: 1px 1px 2px black;
+}
+.bodycontainer .productcontainer .product .btnCardDelete {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.bodycontainer .productcontainer .product .btnCardDelete a {
+  margin: 5px;
+}
+.bodycontainer .productcontainer .product .btnCardDelete a i {
+  padding: 5px;
+  color: white;
 }
 .bodycontainer .productcontainer .product hr {
   width: 25%;

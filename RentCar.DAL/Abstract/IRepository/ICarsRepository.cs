@@ -20,5 +20,6 @@ namespace RentCar.DAL.Abstract.IRepository
         bool SaveNewEngineType(EngineTypes engineType);
         bool SaveNewCategory(Categories category);
         bool SaveNewModel(Models.Entities.Models model);
+        bool DeleteCar(int id);
     }
 }

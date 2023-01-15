@@ -15,7 +15,7 @@ namespace RentCar.DAL.Concrete.Repository
         }
         public List<Cars> GetCars()
         {
-            return (_dbcontext.Cars.ToList());
+            return (_dbcontext.Cars.Where(x => x.Status == 1).ToList());
         }
         public List<Marks> GetMarks()
         {
@@ -126,6 +126,25 @@ namespace RentCar.DAL.Concrete.Repository
             {
                 return false;
             }
-        }      
+        }
+
+        public bool DeleteCar(int id)
+        {
+            try
+            {
+                var car = _dbcontext.Cars.Find(id);
+                car.Status = 0;
+                _dbcontext.Cars.Update(car);
+                _dbcontext.SaveChanges();
+                return true;
+
+            }
+            catch (System.Exception)
+            {
+                return false;
+                throw;
+            }
+
+        }
     }
 }

@@ -341,25 +341,10 @@ namespace RentCar.Services
             return imgDataURL;
         }
 
-        public Cars DeleteCar(int id)
+        public bool DeleteCar(int id)
         {
-            var car  =  _carsRepository.GetCarById(id);
-            Cars myCar = new Cars()
-            {
-                CarId = car.CarId,
-                CategoryId = car.CategoryId,
-                CreatedDate = DateTime.Now,
-                CreatedUser = car.CreatedUser,
-                EngineTypeId = car.EngineTypeId,
-                EngineVolume = car.EngineVolume,
-                MarkId = car.MarkId,
-                ModelId = car.ModelId,
-                Price = car.Price,
-                Year = car.Year,
-                Status = 0
-            };
-            
-           return null;
+            var result  =  _carsRepository.DeleteCar(id);
+            return result;
         }
     }
 }
