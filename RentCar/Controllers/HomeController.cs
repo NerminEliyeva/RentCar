@@ -67,6 +67,7 @@ namespace RentCar.Controllers
         [HttpGet]
         public IActionResult EditCar(int id)
         {
+
             return View();
         }
 

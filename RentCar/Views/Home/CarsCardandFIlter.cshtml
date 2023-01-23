@@ -6,7 +6,7 @@
     <div class="axtariscontainer">
         <form>
             <select class="selectmarka">
-                <option value="-1" selected disabled>MARKA</option>
+                <option value="0" selected disabled>MARKA</option>
                 <option value="0">Hamısı</option>
                 @foreach (var item in Model.FilterData.FilterMarks)
                 {
@@ -14,7 +14,7 @@
                 }
             </select>
             <select class="selectmodel">
-                <option value="" selected disabled>MODEL</option>
+                <option value="0" selected disabled>MODEL</option>
                 <option value="0">Hamısı</option>
                 @*      @foreach (var modelim in Model.FilterData.FilterModels)
                     {
@@ -22,7 +22,7 @@
                     }*@
             </select>
             <select class="selectyear">
-                <option value="" selected disabled>IL</option>
+                <option value="0" selected disabled>IL</option>
                 <option value="0">Hamısı</option>
 
                 @foreach (var item in Model.FilterData.FilterYears)
@@ -31,9 +31,8 @@
                 }
             </select>
             <select class="selectcategory">
-                <option value="" selected disabled>KATEQORİYA</option>
+                <option value="0" selected disabled>KATEQORİYA</option>
                 <option value="0">Hamısı</option>
-
                 @foreach (var item in Model.FilterData.FilterCategories)
                 {
                     <option value="@item.CategoryId">@item.CategoryName</option>
@@ -138,6 +137,7 @@
                         <div class="qiymet"><span>Price</span>$ / gün</div>
                         Category
                     </div>
+                      <div class="kateqoriya">Categoryy</div>
                     <hr>
                     <div class="xususiyyetler">
                         <ul>
@@ -158,7 +158,7 @@
                                  textHtml =textHtml.replace("Markaa",ele.marka);
                                  textHtml =textHtml.replace("Modell",ele.model);
                                  textHtml =textHtml.replace("Price",ele.price);
-                                 textHtml =textHtml.replace("Category",ele.category);
+                                 textHtml =textHtml.replace("Categoryy",ele.category);
                                  textHtml =textHtml.replace("Year",ele.year);
                                  textHtml =textHtml.replace("EngineType",ele.engineType);
                                  textHtml =textHtml.replace("Volume",ele.volume);
@@ -176,7 +176,6 @@
      $('.btndelete').on("click",function(e) {
          e.preventDefault()
          var deleteId =  $(this).attr("deleteId")
-
         $.ajax({
                  type: "POST",
                  url: '@Url.Action("DeleteCar","Home")',
@@ -194,8 +193,7 @@
                           setTimeout(function(){
                             var url = '@Url.Action("CarsCardAndFilter", "Home")';
                            window.location.href = url;
-                          },1500)
-            
+                          },1500)           
                  },
                  error: function () {
                      Swal.fire({
@@ -205,7 +203,7 @@
                           })
                  }
              });
-    });
+      });
 
 
 </script>

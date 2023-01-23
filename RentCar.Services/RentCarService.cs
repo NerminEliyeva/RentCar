@@ -14,6 +14,7 @@ namespace RentCar.Services
     public class RentCarService : IRentCarService
     {
         private readonly ICarsRepository _carsRepository;
+
         public RentCarService(ICarsRepository carsRepository)
         {
             _carsRepository = carsRepository;
@@ -203,7 +204,7 @@ namespace RentCar.Services
             var myModel = _carsRepository.GetModels().Where(x => x.ModelId == cars.MarkId).FirstOrDefault().ModelName;
 
             IFormFile esasSekil = model.MainImage;
-            string mainFilePath = @$"C:/ServerFiles/{myMark}_{myModel}_esas_sekil_{DateTime.Now.ToString("yyyy_MM_dd") + Path.GetExtension(esasSekil.FileName)}";
+            string mainFilePath = @$"C:/ServerFiles/{myMark}_{myModel}_esas_sekil_{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + Path.GetExtension(esasSekil.FileName)}";
 
             using (Stream fileStream = new FileStream(mainFilePath, FileMode.Create))
             {
@@ -340,7 +341,6 @@ namespace RentCar.Services
             string imgDataURL = string.Format("data:image/{0};base64,{1}", extention, image);
             return imgDataURL;
         }
-
         public bool DeleteCar(int id)
         {
             var result  =  _carsRepository.DeleteCar(id);

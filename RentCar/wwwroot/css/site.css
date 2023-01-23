@@ -11,121 +11,6 @@ body {
     background-color: #f6f7fa;
 }
 
-/*.addelancategory .addelan {
-    width: 50%;
-    margin: 30px auto;
-    background-color: white;
-    padding: 20px;
-    text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-    .addelan .addelanform p {
-        margin-bottom: 0px;
-    }
-
-    .addelan .addelanform {
-        width: 50%;
-        margin: auto;
-    } 
-        .addelan .addelanform select,
-        .addelan .addelanform input,
-        .addelan .addelanform textarea {
-            width: 100%;
-
-            margin: 10px auto;
-            padding: 5px;
-        }
-        .addelan .addelanform button {
-            width: 50%;
-            background-color: forestgreen;
-            border: none;
-            color: white;
-            padding: 4px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 20px auto;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .containersecimpenceresi {
-            min-height: 635px;
-            padding: 80px;
-        }
-
-    .containersecimpenceresi .secimler {
-        width: 80%;
-        margin: auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-
-        .containersecimpenceresi .secimler .addNewOption {
-            text-align: center;
-            background-color: cornflowerblue;
-            width: 34%;
-            height: 80px;
-            margin-top: 50px;
-            color: white;
-            padding-top: 20px;
-            border-radius: 10px;
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        }
-
-            .containersecimpenceresi .secimler .addNewOption a {
-                color: white;
-                text-decoration: none;
-                cursor: pointer;
-                font-size: 20px;
-            }
-.addelancategory  .secimpenceresi {
-    text-align: center;
-    cursor: pointer;
-    margin: 20px;
-  }
-
-    .secimpenceresi a {
-        color: black;
-        text-decoration: none;
-    }
-
-    .secimpenceresi span:hover {
-        border-bottom: 1px solid #8c0c0c;
-    }
-
-
-.birSecim {
-    width: 35%;
-    margin:auto;
-    text-align: center;
-    padding: 10px 30px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-    .birSecim input, .birSecim select {
-        width: 100%;
-        margin: 10px auto;
-        padding: 5px;
-    }
-
-    .birSecim button {
-        background-color: #4CAF50;*/ /* Green */
-        /*border: none;
-        color: white;
-        padding: 5px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 10px 2px;
-        cursor: pointer;
-        border-radius: 5px;
-    }*/
 
 .detailscontainer {
     width: 80%;
@@ -293,42 +178,52 @@ table {
 
 
 
-.photoarea {
-    width: 80%;
+ .photoarea,  .photoareaMult {
+    width: 100%;
     margin: auto;
     border: 1px solid gray;
     display: flex;
+    flex-wrap: wrap;
 }
-
-    .photoarea .item {
-        width: 30%;
-        margin: 5px;
-        position: relative;
+ .photoarea .item{
+    width: 100%;
+    position: relative;
+}
+ .photoareaMult .item {
+    width: 30%;
+    margin: 5px;
+    position: relative;
+}
+    .photoareaMult .item img {
+        width: 100%;
+    }
+    .photoarea .item img {
+        width: 100%;
+        height: 100%;
+        object-fit:cover;
+    }
+    .photoarea .item input,
+    .photoareaMult .item input {
+        display: none;
     }
 
-        .photoarea .item img {
-            width: 100%;
-        }
+    .photoarea .item::after,
+    .photoareaMult .item::after {
+        content: "sil";
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: white;
+        opacity: 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
 
-        .photoarea .item input {
-            display: none;
-        }
-
-        .photoarea .item::after {
-            content: "remove";
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: white;
-            opacity: 0;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-
-        .photoarea .item:hover::after {
-            opacity: 1;
-        }
+    .photoarea .item:hover::after,
+    .photoareaMult .item:hover::after {
+        opacity: 1;
+    }

@@ -127,7 +127,6 @@ namespace RentCar.DAL.Concrete.Repository
                 return false;
             }
         }
-
         public bool DeleteCar(int id)
         {
             try
