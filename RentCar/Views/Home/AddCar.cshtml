@@ -59,6 +59,7 @@
 </div>
 <script>
    
+    //marka secildikde uygun modelin gelmesi
          $(".selectmarka").change(function(x) {
             var selectedMarkVal = $( ".selectmarka option:selected" ).val();
             console.log(selectedMarkVal);
@@ -83,9 +84,11 @@
                         alert("Error while inserting data");
                     }
                 });
-        });
+     });
 
-    $('.addNewCarSubmit').on("click",function(e) {
+
+   //masin elave olunmasi ajax post 
+       $('.addNewCarSubmit').on("click",function(e) {
        e.preventDefault()
 
         var marka = parseInt($( ".selectmarka option:selected" ).val());
@@ -132,10 +135,10 @@
                         alert("Error while inserting data");
                     }
                 });
-    });
+     });
 
-
-  document.querySelector(".mainImage").addEventListener("change", function () {
+    //esas seklin gorunmesi
+      document.querySelector(".mainImage").addEventListener("change", function () {
          let item = document.createElement('div')
          item.className = 'item'
 
@@ -150,19 +153,19 @@
              $(".mainImage").attr('disabled', false)
          })
          $(this).attr('disabled', true)
+     })
 
-  })
 
-
-  document.querySelector(".images").addEventListener("change", function () {   
+    //elave sekillerin gorunmesi
+     document.querySelector(".images").addEventListener("change", function () {   
    
-     for (let i = 0; i < $(".images")[0].files.length; i++) {
+       for (let i = 0; i < $(".images")[0].files.length; i++) {
           var src=  URL.createObjectURL(this.files[i])
-     document.querySelector(".photoareaMult").innerHTML+=`
-        <div class="item">
-            <img src="${src}">
-        </div>
-      `
+       document.querySelector(".photoareaMult").innerHTML+=`
+          <div class="item">
+              <img src="${src}">
+          </div>
+        `
      }
 
             $(".item").click(function () {

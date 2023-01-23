@@ -20,5 +20,6 @@ namespace RentCar.Services.Interfaces
         List<CardsInfo> GetListCarData();
         List<CardsInfo> FilterDataService(ShowFilteredData model);
         bool DeleteCar(int id);
+        UpdateCarData GetUpdateCarData(int id);
     }
 }

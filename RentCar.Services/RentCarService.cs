@@ -333,6 +333,44 @@ namespace RentCar.Services
             };
             return carDetails;
         }
+
+        public UpdateCarData GetUpdateCarData(int id)
+        {
+
+            var rowCar = _carsRepository.GetCarById(id);
+
+            var markas = _carsRepository.GetMarks();
+            var models = _carsRepository.GetModels();
+            var engientypes = _carsRepository.GetEngineTypes();
+            var categories = _carsRepository.GetCategories();
+
+            string mainfullPath = _carsRepository.GetMainImageByCarId(rowCar.CarId);
+            var mainImgDataURL = GetImageBase64FromPath(mainfullPath);
+
+            List<string> multFullPath = _carsRepository.GetMultImageByCarId(rowCar.CarId);
+
+            List<string> multImgDataURLList = new List<string>();
+            foreach (var onemultimgFullPath in multFullPath)
+            {
+                multImgDataURLList.Add(GetImageBase64FromPath(onemultimgFullPath));
+            }
+
+            UpdateCarData carData = new UpdateCarData()
+            {
+                CarId = id,
+                Marks = markas,
+                EngineTypes = engientypes,
+                Categories = categories,
+                Price = rowCar.Price,
+                Volume = rowCar.EngineVolume,
+                Year = rowCar.Year,
+                MainImage = mainImgDataURL,
+                Images = multImgDataURLList
+            };
+            return carData;
+        }
+
+
         public string GetImageBase64FromPath(string fullPath)
         {
             byte[] imageArray = System.IO.File.ReadAllBytes(fullPath);

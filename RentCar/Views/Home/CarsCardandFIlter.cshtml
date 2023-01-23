@@ -174,9 +174,9 @@
 
         //delete car prosesi
      $('.btndelete').on("click",function(e) {
-         e.preventDefault()
-         var deleteId =  $(this).attr("deleteId")
-        $.ajax({
+           e.preventDefault()
+           var deleteId =  $(this).attr("deleteId")
+           $.ajax({
                  type: "POST",
                  url: '@Url.Action("DeleteCar","Home")',
                  data:{"id":deleteId},
@@ -203,7 +203,7 @@
                           })
                  }
              });
-      });
+     });
 
 
 </script>
