@@ -81,9 +81,9 @@ namespace RentCar.Services
             var engientypes = _carsRepository.GetEngineTypes();
             var categories = _carsRepository.GetCategories();
 
-            if (model.FilterMarkaId!=0)
+            if (model.FilterMarkaId != 0)
             {
-              cars = cars.Where(x=>x.MarkId==model.FilterMarkaId).ToList() ;
+                cars = cars.Where(x => x.MarkId == model.FilterMarkaId).ToList();
             }
             if (model.FilterModelId != 0)
             {
@@ -124,7 +124,7 @@ namespace RentCar.Services
                 };
                 cardsInfos.Add(onecardInfo);
             }
-            return cardsInfos;      
+            return cardsInfos;
         }
         public List<CardsInfo> GetListCarData()
         {
@@ -155,7 +155,7 @@ namespace RentCar.Services
                     CreatedUser = car.CreatedUser
                 };
                 listData.Add(oneListElement);
-            } 
+            }
             return listData;
         }
         public List<Models.Entities.Models> GetModels(int id)
@@ -223,7 +223,7 @@ namespace RentCar.Services
             int say = 1;
             foreach (IFormFile iformFileImage in model.Images)
             {
-                string smallFilePath = @$"C:/ServerFiles/{myMark}_{myModel}_elave_sekil_{(say++).ToString()+ DateTime.Now.ToString("yyyy_MM_dd") + Path.GetExtension(esasSekil.FileName)}";
+                string smallFilePath = @$"C:/ServerFiles/{myMark}_{myModel}_elave_sekil_{(say++).ToString() + DateTime.Now.ToString("yyyy_MM_dd") + Path.GetExtension(esasSekil.FileName)}";
                 using (Stream fileStream = new FileStream(smallFilePath, FileMode.Create))
                 {
                     iformFileImage.CopyTo(fileStream);
@@ -253,7 +253,7 @@ namespace RentCar.Services
                 CreatedDate = DateTime.Now,
                 MarkName = markName
             };
-            _carsRepository.SaveNewMark(marks); 
+            _carsRepository.SaveNewMark(marks);
             return true;
         }
         public bool SaveNewEngineTypeService(string engineTypeName)
@@ -276,14 +276,14 @@ namespace RentCar.Services
                 return false;
             }
             var category = new Categories()
-            { 
+            {
                 CreatedDate = DateTime.Now,
                 CategoryName = categoryName
             };
             _carsRepository.SaveNewCategory(category);
             return true;
         }
-        public bool SaveNewModelService(string modelName,int markId)
+        public bool SaveNewModelService(string modelName, int markId)
         {
             if (string.IsNullOrEmpty(modelName))
             {
@@ -293,7 +293,7 @@ namespace RentCar.Services
             {
                 CreatedDate = DateTime.Now,
                 ModelName = modelName,
-                ModelMarkId = markId                
+                ModelMarkId = markId
             };
             _carsRepository.SaveNewModel(model);
             return true;
@@ -365,7 +365,10 @@ namespace RentCar.Services
                 Volume = rowCar.EngineVolume,
                 Year = rowCar.Year,
                 MainImage = mainImgDataURL,
-                Images = multImgDataURLList
+                Images = multImgDataURLList,
+                CategoryId = rowCar.CategoryId,
+                EngineTypeId = rowCar.EngineTypeId,
+                MarkId = rowCar.MarkId
             };
             return carData;
         }
@@ -381,7 +384,7 @@ namespace RentCar.Services
         }
         public bool DeleteCar(int id)
         {
-            var result  =  _carsRepository.DeleteCar(id);
+            var result = _carsRepository.DeleteCar(id);
             return result;
         }
     }

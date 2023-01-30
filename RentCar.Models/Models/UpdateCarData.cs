@@ -17,7 +17,10 @@ namespace RentCar.Models.Models
         public int Year { get; set; }
         public decimal Price { get; set; }
         public List<Marks> Marks { get; set; }
+        public int MarkId { get; set; }
         public List<Categories> Categories { get; set; }
+        public int CategoryId { get; set; }
         public List<EngineTypes> EngineTypes { get; set; }
+        public int EngineTypeId { get; set; }
     }
 }

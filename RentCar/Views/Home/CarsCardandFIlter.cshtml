@@ -77,133 +77,150 @@
 
 <script>
 
-        //filterde markaya uygun modelin gelmesi
-        $(".selectmarka").change(function(x) {
-            var selectedMarkVal = $( ".selectmarka option:selected" ).val();
-            $.ajax({
-                    type: "Get",
-                    url: '@Url.Action("GetModels","Home")',
-                    data: {
+       //filterde markaya uygun modelin gelmesi
+       $(".selectmarka").change(function(x) {
+           var selectedMarkVal = $(this).val();
+           $.ajax({
+                   type: "Get",
+                   url: '@Url.Action("GetModels","Home")',
+                   data: {
                     id:selectedMarkVal
-                    },
-                    contentType: "application/json; charset=utf-8",
-                    success:
-                        function (returndata) {
+                   },
+                   contentType: "application/json; charset=utf-8",
+                   success: function (returndata) {
                         $(".selectmodel").children().remove().end()
-                          $(".selectmodel").append(`<option value="" selected disabled>MODEL</option>`)
-
+                        $(".selectmodel").append(`<option value="" selected disabled>MODEL</option>`)
                         $.each(returndata,function(i,item){
                             var option = new Option(item["modelName"],item["modelId"]);
                             $(".selectmodel").append($(option))
                         })
-                    },
-                    error: function () {
-                        alert("Error while inserting data");
-                    }
-                });
-        });
+                   },
+                   error: function () {
+                       alert("Error while inserting data");
+                   }
+               });
+       });
 
-        //filterleme prosesi
-            $('.btnaxtar').on("click",function(e) {
+       //filterleme prosesi
+           $('.btnaxtar').on("click",function(e) {
             e.preventDefault()
+           var marka = $( ".selectmarka option:selected" ).val();
+           var model = $( ".selectmodel option:selected" ).val();
+           var year = $( ".selectyear option:selected" ).val();
+           var category = $( ".selectcategory option:selected" ).val();
+           var minPrice = $(".inpminprice").val();
+           var maxPrice = $(".inpmaxprice").val();
+           var  model ={
+                    "filterMarkaId": marka,
+                    "filterModelId":  model,
+                    "filterCategoryId": category,
+                    "minPrice":  minPrice,
+                    "maxPrice":  maxPrice,
+                    "filterYear": year,
+           };
 
-            var marka = $( ".selectmarka option:selected" ).val();
-            var model = $( ".selectmodel option:selected" ).val();
-            var year = $( ".selectyear option:selected" ).val();
-            var category = $( ".selectcategory option:selected" ).val();
-            var minPrice = $(".inpminprice").val();
-            var maxPrice = $(".inpmaxprice").val();
-            var  model ={
-                     "filterMarkaId": marka,
-                     "filterModelId":  model,
-                     "filterCategoryId": category,
-                     "minPrice":  minPrice,
-                     "maxPrice":  maxPrice,
-                     "filterYear": year,
-            };
+            $.ajax({
+                       type: "Get",
+                       url: '@Url.Action("GetFilterData","Home")',
+                       data: model,
+                       dataType:"json",
+                       success:function (returndata) {
+                           let cardHtml =`
+                     <div class="product">
+                   <img src="ImageBase64" alt="" class="cardImage">
+                   <div class="imgdetails"><a href="/Home/CarDetails/CarId"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                   <div class="productbasliq">
+                       <div class="marka">Markaa Modell</div>
+                       <div class="qiymet"><span>Price</span>$ / gün</div>
+                       Category
+                   </div>
+                     <div class="kateqoriya">Categoryy</div>
+                   <hr>
+                   <div class="xususiyyetler">
+                       <ul>
+                           <li><i class="fa-solid fa-calendar-days"></i>Year</li>
+                           <li><i class="fa-solid fa-road"></i>EngineType</li>
+                           <li><i class="fa-solid fa-bolt"></i>Volume <span>L</span></li>
+                       </ul>
+                   </div>
+               </div>
+              `;
+                      $(".productcontainer").children().remove().end()
 
-             $.ajax({
-                        type: "Get",
-                        url: '@Url.Action("GetFilterData","Home")',
-                        data: model,
-                        dataType:"json",
-                        success:function (returndata) {
-                            let cardHtml =`
-                      <div class="product">
-                    <img src="ImageBase64" alt="" class="cardImage">
-                    <div class="imgdetails"><a href="/Home/CarDetails/CarId"><i class="fa-solid fa-magnifying-glass"></i></a></div>
-                    <div class="productbasliq">
-                        <div class="marka">Markaa Modell</div>
-                        <div class="qiymet"><span>Price</span>$ / gün</div>
-                        Category
-                    </div>
-                      <div class="kateqoriya">Categoryy</div>
-                    <hr>
-                    <div class="xususiyyetler">
-                        <ul>
-                            <li><i class="fa-solid fa-calendar-days"></i>Year</li>
-                            <li><i class="fa-solid fa-road"></i>EngineType</li>
-                            <li><i class="fa-solid fa-bolt"></i>Volume <span>L</span></li>
-                        </ul>
-                    </div>
-                </div>
-               `;
-                       $(".productcontainer").children().remove().end()
+                       returndata.forEach(function(ele){
+                                let textHtml =cardHtml;
+                                textHtml =textHtml.replace("ImageBase64",ele.imageBase64)
+                                textHtml =textHtml.replace("Markaa",ele.marka)
+                                textHtml =textHtml.replace("CarId",ele.carId);
+                                textHtml =textHtml.replace("Markaa",ele.marka);
+                                textHtml =textHtml.replace("Modell",ele.model);
+                                textHtml =textHtml.replace("Price",ele.price);
+                                textHtml =textHtml.replace("Categoryy",ele.category);
+                                textHtml =textHtml.replace("Year",ele.year);
+                                textHtml =textHtml.replace("EngineType",ele.engineType);
+                                textHtml =textHtml.replace("Volume",ele.volume);
+                                $(".productcontainer").append(textHtml)
+                              //  $(".productcontainer").append(`
+                              //       <div class="product">
+                              //     <img src="ImageBase64" alt="" class="cardImage">
+                              //     <div class="imgdetails"><a href="/Home/CarDetails/CarId"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                              //     <div class="productbasliq">
+                              //         <div class="marka">${ele.marka} ${ele.model}</div>
+                              //         <div class="qiymet"><span>Price</span>$ / gün</div>
+                              //         Category
+                              //     </div>
+                              //       <div class="kateqoriya">Categoryy</div>
+                              //     <hr>
+                              //     <div class="xususiyyetler">
+                              //         <ul>
+                              //             <li><i class="fa-solid fa-calendar-days"></i>Year</li>
+                              //             <li><i class="fa-solid fa-road"></i>EngineType</li>
+                              //             <li><i class="fa-solid fa-bolt"></i>Volume <span>L</span></li>
+                              //         </ul>
+                              //     </div>
+                              // </div>
+                              //`)
+                            });
 
-                        returndata.forEach(function(ele){
-                                 let textHtml =cardHtml;
-                                 textHtml =textHtml.replace("ImageBase64",ele.imageBase64)
-                                 textHtml =textHtml.replace("Markaa",ele.marka)
-                                 textHtml =textHtml.replace("CarId",ele.carId);
-                                 textHtml =textHtml.replace("Markaa",ele.marka);
-                                 textHtml =textHtml.replace("Modell",ele.model);
-                                 textHtml =textHtml.replace("Price",ele.price);
-                                 textHtml =textHtml.replace("Categoryy",ele.category);
-                                 textHtml =textHtml.replace("Year",ele.year);
-                                 textHtml =textHtml.replace("EngineType",ele.engineType);
-                                 textHtml =textHtml.replace("Volume",ele.volume);
-                                 $(".productcontainer").append(textHtml)
-                             });
+                       },
+                       error: function () {
+                           alert("Error while inserting data");
+                       }
+                   });
+       });
 
-                        },
-                        error: function () {
-                            alert("Error while inserting data");
-                        }
-                    });
-        });
-
-        //delete car prosesi
-     $('.btndelete').on("click",function(e) {
-           e.preventDefault()
-           var deleteId =  $(this).attr("deleteId")
-           $.ajax({
-                 type: "POST",
-                 url: '@Url.Action("DeleteCar","Home")',
-                 data:{"id":deleteId},
-                 cache: false,
-                 dataType: "json",
-                 success:function (data) {
-                      Swal.fire({
-                             icon: 'success',
-                             title:  'Uğurla silindi!',
-                             showConfirmButton: false,
-                             timer: 1500
-                          })      
-
-                          setTimeout(function(){
-                            var url = '@Url.Action("CarsCardAndFilter", "Home")';
-                           window.location.href = url;
-                          },1500)           
-                 },
-                 error: function () {
+       //delete car prosesi
+    $('.btndelete').on("click",function(e) {
+          e.preventDefault()
+          var deleteId =  $(this).attr("deleteId")
+          $.ajax({
+                type: "POST",
+                url: '@Url.Action("DeleteCar","Home")',
+                data:{"id":deleteId},
+                cache: false,
+                dataType: "json",
+                success:function (data) {
                      Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Xəta baş verdi!',
-                          })
-                 }
-             });
-     });
+                            icon: 'success',
+                            title:  'Uğurla silindi!',
+                            showConfirmButton: false,
+                            timer: 1500
+                         })
+
+                         setTimeout(function(){
+                           var url = '@Url.Action("CarsCardAndFilter", "Home")';
+                          window.location.href = url;
+                         },1500)
+                },
+                error: function () {
+                    Swal.fire({
+                           icon: 'error',
+                           title: 'Oops...',
+                           text: 'Xəta baş verdi!',
+                         })
+                }
+            });
+    });
 
 
 </script>
