@@ -1,4 +1,6 @@
-﻿
+﻿@using RentCar.Models.Entities
+@model List<Marks>
+
 <div class="containersecimpenceresi">
     <div class="birSecim">
         <h1>Model əlavə edin</h1>
@@ -6,12 +8,52 @@
             <form action="">
                 <select class="selectmarka">
                     <option value="" selected disabled>MARKA</option>
-                        <option value="">marka1</option>
-                        <option value="">marka1</option>    
+                     @foreach (var item in Model)
+                {
+                    <option value="@item.MarkId">@item.MarkName</option>
+                }
                 </select>
-                <input type="text" placeholder="Model">
-                  <button>Əlavə et</button>
+                <input type="text" placeholder="Model" id="newModel" >
+                  <button class="submitModel">Əlavə et</button>
             </form>
         </div>
     </div>
 </div>
+
+
+<script>
+    $('.submitModel').on("click",function(e) {
+    e.preventDefault()
+    
+      var MarkId = $( ".selectmarka option:selected" ).val();
+        var frontModelName = $("#newModel").val();
+ 
+        $.ajax({
+                 type: "POST",
+                 url: '@Url.Action("SaveNewModel","Home")',
+                 data:{"modelName":frontModelName,
+                        "markId":MarkId},
+                 cache: false,
+                  dataType: "json",
+                 success:function (data) {
+                      Swal.fire({
+                             icon: 'success',
+                             title:  'Yeni ' + frontModelName + ' modeli əlavə olundu',
+                             showConfirmButton: false,
+                             timer: 1500
+                          })
+                   $("#newModel").val("");
+                 },
+                 error: function () {
+                     Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Xəta baş verdi!',
+                          })
+                 }
+             });
+    });
+
+
+</script>
+

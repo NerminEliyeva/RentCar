@@ -13,10 +13,6 @@ namespace RentCar.Controllers
             _rentCarService = rentCarService;
         }
 
-        /// <summary>
-        /// sehife acilan kimi isleyecek metod 
-        /// </summary>
-        /// <returns></returns>
         [HttpGet]
         public IActionResult Index()
         {
@@ -31,15 +27,17 @@ namespace RentCar.Controllers
 
         #region Kartlar ve filterler
 
-
-        /// <summary>
-        /// masinlari ve filteri gosteren sehife
-        /// </summary>
-        /// <returns></returns>
         [HttpGet]
         public IActionResult CarsCardAndFilter()
         {
             return View(_rentCarService.GetCardsAndFilterInfo());
+        }
+
+        [HttpGet]
+        public IActionResult GetFilterData(ShowFilteredData model)
+        {
+            var result = _rentCarService.FilterDataService(model);
+            return Ok(result);
         }
 
         [HttpGet]
@@ -50,7 +48,7 @@ namespace RentCar.Controllers
 
         #endregion
 
-        #region Yeni Masin ve Secim elave etmek
+        #region Yeni Masin ve Secim elave etmek deyismek
         [HttpGet]
         public IActionResult AddCar()
         {
@@ -65,6 +63,13 @@ namespace RentCar.Controllers
             return Ok(result);
         }
 
+
+        [HttpGet]
+        public IActionResult EditCar(int id)
+        {
+            return View(_rentCarService.GetUpdateCarData(id));
+        }
+
         [HttpGet]
         public IActionResult AddOption()
         {
@@ -76,27 +81,100 @@ namespace RentCar.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult SaveNewMark(string markName)
+        {
+            var isOk = _rentCarService.SaveNewMarkService(markName);
+
+            if (isOk)
+            {
+                return Ok(isOk);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet]
         public IActionResult AddNewModel()
         {
-            return View();
+            return View(_rentCarService.GetMarks());
         }
+
+        [HttpPost]
+        public IActionResult SaveNewModel(string modelName, int markId)
+        {
+            var isOk = _rentCarService.SaveNewModelService(modelName, markId);
+
+            if (isOk)
+            {
+                return Ok(isOk);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet]
         public IActionResult AddNewEngineType()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult SaveNewEngineType(string engineTypeName)
+        {
+            var isOk = _rentCarService.SaveNewEngineTypeService(engineTypeName);
+
+            if (isOk)
+            {
+                return Ok(isOk);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet]
         public IActionResult AddNewCategory()
         {
             return View();
         }
 
+        [HttpPost]
+        public IActionResult SaveNewCategory(string categoryName)
+        {
+            var isOk = _rentCarService.SaveNewCategoryService(categoryName);
+
+            if (isOk)
+            {
+                return Ok(isOk);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
         #endregion
+
+        [HttpPost]
+        public IActionResult DeleteCar(int id)
+        {
+            var result = _rentCarService.DeleteCar(id);
+            if (result) return Ok(result);
+            else return BadRequest();
+        }
+
         [HttpGet]
         public IActionResult List()
         {
-            return View();
+            var result = _rentCarService.GetListCarData();
+            return View(result);
         }
 
         [HttpGet]

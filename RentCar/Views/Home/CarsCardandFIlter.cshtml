@@ -1,56 +1,63 @@
-﻿@model CarsViewModel
+﻿@using RentCar.Models.ViewModels
+@model CarsViewModel
 
 <!-- masinlar olan sehife -->
 <div class="bodycontainer">
     <div class="axtariscontainer">
         <form>
             <select class="selectmarka">
-                <option value="" selected disabled>MARKA</option>
+                <option value="0" selected disabled>MARKA</option>
+                <option value="0">Hamısı</option>
                 @foreach (var item in Model.FilterData.FilterMarks)
                 {
                     <option value="@item.MarkId">@item.MarkName</option>
                 }
             </select>
             <select class="selectmodel">
-                 <option value="" selected disabled>MODEL</option>
+                <option value="0" selected disabled>MODEL</option>
+                <option value="0">Hamısı</option>
                 @*      @foreach (var modelim in Model.FilterData.FilterModels)
                     {
                     <option value="">@modelim.ModelName</option>
                     }*@
             </select>
-            <select>
-                <option value="" selected disabled>IL</option>
+            <select class="selectyear">
+                <option value="0" selected disabled>IL</option>
+                <option value="0">Hamısı</option>
+
                 @foreach (var item in Model.FilterData.FilterYears)
                 {
-                    <option value="">@item</option>
+                    <option value="@item">@item</option>
                 }
             </select>
-            <select>
-                <option value="" selected disabled>KATEQORİYA</option>
+            <select class="selectcategory">
+                <option value="0" selected disabled>KATEQORİYA</option>
+                <option value="0">Hamısı</option>
                 @foreach (var item in Model.FilterData.FilterCategories)
                 {
-                    <option value="">@item.CategoryName</option>
+                    <option value="@item.CategoryId">@item.CategoryName</option>
                 }
             </select>
             <div class="pricerange">
                 <p for="">Qiymət :</p>
-                <input type="text" placeholder="Min">
-                <input type="text" placeholder="Max">
+                <input type="text" placeholder="Min" class="inpminprice">
+                <input type="text" placeholder="Max" class="inpmaxprice">
             </div>
-            <a href="">Axtar</a>
+            <div class="btnaxtar"><a href="">Axtar</a></div>
         </form>
     </div>
 
     <div class="productcontainer">
-
         @foreach (var item in Model.CardsInfo)
         {
             <div class="product">
                 <img src="@item.ImageBase64" alt="">
+                <div class="imgdetails"><a href="/Home/CarDetails/@item.CarId"><i class="fa-solid fa-magnifying-glass"></i></a></div>
                 <div class="productbasliq">
-                    <div class="marka model">@item.Marka @item.Model</div>
+                    <div class="marka">@item.Marka @item.Model </div>
                     <div class="qiymet"><span>@item.Price</span>$ / gün</div>
                 </div>
+                <div class="kateqoriya">@item.Category</div>
                 <hr>
                 <div class="xususiyyetler">
                     <ul>
@@ -59,41 +66,162 @@
                         <li><i class="fa-solid fa-bolt"></i>@item.Volume <span>L</span></li>
                     </ul>
                 </div>
-                <div class="icondetails">
-                    <a href="/Home/CarDetails/@item.CarId"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    <a><i class="fa-regular fa-heart"></i></a>
+                <div class="btnCardDelete">
+                    <a href="/Home/EditCar/@item.CarId" class="btnedit"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="" deleteId="@item.CarId" class="btndelete"><i class="fa-solid fa-trash-can"></i></a>
                 </div>
             </div>
         }
-
     </div>
 </div>
 
 <script>
-    $(".selectmarka").change(function(x) {
 
-        var selectedMarkVal = $( ".selectmarka option:selected" ).val();
-        $.ajax({
-                type: "Get",
-                url: '@Url.Action("GetModels","Home")',
-                data: {
-                id:selectedMarkVal
-                },
-                contentType: "application/json; charset=utf-8",
-                success: 
-                    function (returndata) {
-                    $(".selectmodel").children().remove().end()
-                      $(".selectmodel").append(`<option value="" selected disabled>MODEL</option>`)
-                    
-                    $.each(returndata,function(i,item){
-                        var option = new Option(item["modelName"],item["modelId"]);
-                        $(".selectmodel").append($(option))
-                    })
+       //filterde markaya uygun modelin gelmesi
+       $(".selectmarka").change(function(x) {
+           var selectedMarkVal = $(this).val();
+           $.ajax({
+                   type: "Get",
+                   url: '@Url.Action("GetModels","Home")',
+                   data: {
+                    id:selectedMarkVal
+                   },
+                   contentType: "application/json; charset=utf-8",
+                   success: function (returndata) {
+                        $(".selectmodel").children().remove().end()
+                        $(".selectmodel").append(`<option value="" selected disabled>MODEL</option>`)
+                        $.each(returndata,function(i,item){
+                            var option = new Option(item["modelName"],item["modelId"]);
+                            $(".selectmodel").append($(option))
+                        })
+                   },
+                   error: function () {
+                       alert("Error while inserting data");
+                   }
+               });
+       });
+
+       //filterleme prosesi
+           $('.btnaxtar').on("click",function(e) {
+            e.preventDefault()
+           var marka = $( ".selectmarka option:selected" ).val();
+           var model = $( ".selectmodel option:selected" ).val();
+           var year = $( ".selectyear option:selected" ).val();
+           var category = $( ".selectcategory option:selected" ).val();
+           var minPrice = $(".inpminprice").val();
+           var maxPrice = $(".inpmaxprice").val();
+           var  model ={
+                    "filterMarkaId": marka,
+                    "filterModelId":  model,
+                    "filterCategoryId": category,
+                    "minPrice":  minPrice,
+                    "maxPrice":  maxPrice,
+                    "filterYear": year,
+           };
+
+            $.ajax({
+                       type: "Get",
+                       url: '@Url.Action("GetFilterData","Home")',
+                       data: model,
+                       dataType:"json",
+                       success:function (returndata) {
+                           let cardHtml =`
+                     <div class="product">
+                   <img src="ImageBase64" alt="" class="cardImage">
+                   <div class="imgdetails"><a href="/Home/CarDetails/CarId"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                   <div class="productbasliq">
+                       <div class="marka">Markaa Modell</div>
+                       <div class="qiymet"><span>Price</span>$ / gün</div>
+                       Category
+                   </div>
+                     <div class="kateqoriya">Categoryy</div>
+                   <hr>
+                   <div class="xususiyyetler">
+                       <ul>
+                           <li><i class="fa-solid fa-calendar-days"></i>Year</li>
+                           <li><i class="fa-solid fa-road"></i>EngineType</li>
+                           <li><i class="fa-solid fa-bolt"></i>Volume <span>L</span></li>
+                       </ul>
+                   </div>
+               </div>
+              `;
+                      $(".productcontainer").children().remove().end()
+
+                       returndata.forEach(function(ele){
+                                let textHtml =cardHtml;
+                                textHtml =textHtml.replace("ImageBase64",ele.imageBase64)
+                                textHtml =textHtml.replace("Markaa",ele.marka)
+                                textHtml =textHtml.replace("CarId",ele.carId);
+                                textHtml =textHtml.replace("Markaa",ele.marka);
+                                textHtml =textHtml.replace("Modell",ele.model);
+                                textHtml =textHtml.replace("Price",ele.price);
+                                textHtml =textHtml.replace("Categoryy",ele.category);
+                                textHtml =textHtml.replace("Year",ele.year);
+                                textHtml =textHtml.replace("EngineType",ele.engineType);
+                                textHtml =textHtml.replace("Volume",ele.volume);
+                                $(".productcontainer").append(textHtml)
+                              //  $(".productcontainer").append(`
+                              //       <div class="product">
+                              //     <img src="ImageBase64" alt="" class="cardImage">
+                              //     <div class="imgdetails"><a href="/Home/CarDetails/CarId"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                              //     <div class="productbasliq">
+                              //         <div class="marka">${ele.marka} ${ele.model}</div>
+                              //         <div class="qiymet"><span>Price</span>$ / gün</div>
+                              //         Category
+                              //     </div>
+                              //       <div class="kateqoriya">Categoryy</div>
+                              //     <hr>
+                              //     <div class="xususiyyetler">
+                              //         <ul>
+                              //             <li><i class="fa-solid fa-calendar-days"></i>Year</li>
+                              //             <li><i class="fa-solid fa-road"></i>EngineType</li>
+                              //             <li><i class="fa-solid fa-bolt"></i>Volume <span>L</span></li>
+                              //         </ul>
+                              //     </div>
+                              // </div>
+                              //`)
+                            });
+
+                       },
+                       error: function () {
+                           alert("Error while inserting data");
+                       }
+                   });
+       });
+
+       //delete car prosesi
+    $('.btndelete').on("click",function(e) {
+          e.preventDefault()
+          var deleteId =  $(this).attr("deleteId")
+          $.ajax({
+                type: "POST",
+                url: '@Url.Action("DeleteCar","Home")',
+                data:{"id":deleteId},
+                cache: false,
+                dataType: "json",
+                success:function (data) {
+                     Swal.fire({
+                            icon: 'success',
+                            title:  'Uğurla silindi!',
+                            showConfirmButton: false,
+                            timer: 1500
+                         })
+
+                         setTimeout(function(){
+                           var url = '@Url.Action("CarsCardAndFilter", "Home")';
+                          window.location.href = url;
+                         },1500)
                 },
                 error: function () {
-                    alert("Error while inserting data");
+                    Swal.fire({
+                           icon: 'error',
+                           title: 'Oops...',
+                           text: 'Xəta baş verdi!',
+                         })
                 }
             });
     });
 
+
 </script>
+

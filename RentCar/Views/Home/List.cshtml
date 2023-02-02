@@ -1,15 +1,17 @@
-﻿ <div class="divlist">
+﻿@using RentCar.Models.Models
+@model List<CardsInfo>
+
+ <div class="divlist">
         <table>
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Şekil</th>
+                    <th>Şəkil</th>
                     <th>Marka</th>
                     <th>Model</th>
                     <th>Kateqoriya</th>
                     <th>Qiymət</th>
                     <th>İl</th>
-                    <th>Yürüş</th>
                     <th>Mühərrik tipi</th>
                     <th>Mühərrik həcmi</th>
                     <th>Əlavə olunma vaxtı</th>
@@ -17,45 +19,29 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><img src="/imgs/mustang1.webp" alt=""></td>
-                    <td>Marka</td>
-                    <td>Model</td>
-                    <td>Ekanom</td>
-                    <td>50 azn / gün</td>
-                    <td>2012</td>
-                    <td>5000 km</td>
-                    <td>Avtomat</td>
-                    <td>2.0 l</td>
-                    <td>02.02.22 01:01</td>
-                    <td>Nermin</td>
+            <tbody>          
+                @foreach (var item in Model)
+               {
+                   <tr>
+                    <td>@item.CarId</td>
+                    <td><img src="@item.ImageBase64" alt=""></td>
+                    <td>@item.Marka</td>
+                    <td>@item.Model</td>
+                    <td>@item.Category</td>
+                    <td>@item.Price azn / gün</td>
+                    <td>@item.Year</td>
+                    <td>@item.EngineType</td>
+                    <td>@item.Volume l</td>
+                    <td>@item.CreatedDate</td>
+                    <td>@item.CreatedUser</td>
                     <td>
-                        <a href="" class="btnedit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="" class="btndelete"><i class="fa-solid fa-trash-can"></i></a>
-                        <a href="" class="btndetails"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <a href="/Home/EditCar/@item.CarId" class="btnedit"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="/Home/DeleteCar/@item.CarId" class="btndelete"><i class="fa-solid fa-trash-can"></i></a>
+                        <a href="/Home/CarDetails/@item.CarId" class="btndetails"><i class="fa-solid fa-magnifying-glass"></i></a>
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td><img src="/imgs/mustang1.webp" alt=""></td>
-                    <td>Marka</td>
-                    <td>Model</td>
-                    <td>Ekanom</td>
-                    <td>50 azn / gün</td>
-                    <td>2012</td>
-                    <td>5000 km</td>
-                    <td>Avtomat</td>
-                    <td>2.0 l</td>
-                    <td>02.02.22 01:01</td>
-                    <td>Nermin</td>
-                    <td>
-                        <a href="" class="btnedit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="" class="btndelete"><i class="fa-solid fa-trash-can"></i></a>
-                        <a href="" class="btndetails"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </td>
-                </tr>
-            </tbody>
+               }
+               
+           </tbody>
         </table>
     </div>

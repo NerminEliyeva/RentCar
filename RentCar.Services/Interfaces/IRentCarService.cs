@@ -12,5 +12,14 @@ namespace RentCar.Services.Interfaces
         NewCarData GetDataForAddingNewCar();
         bool SaveNewCarService(SaveNewCarModel model);
         CarDetails GetCarDetails(int id);
+        bool SaveNewMarkService(string markName);
+        bool SaveNewEngineTypeService(string engineTypeName);
+        bool SaveNewCategoryService(string categoryName);
+        bool SaveNewModelService(string modelName, int markId);
+        List<Marks> GetMarks();
+        List<CardsInfo> GetListCarData();
+        List<CardsInfo> FilterDataService(ShowFilteredData model);
+        bool DeleteCar(int id);
+        UpdateCarData GetUpdateCarData(int id);
     }
 }

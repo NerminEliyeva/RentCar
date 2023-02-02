@@ -1,0 +1,149 @@
+﻿$color_1: white;
+$color_2: black;
+$background-color_1: white;
+$background-color_2: forestgreen;
+$background-color_3: cornflowerblue;
+$background-color_4: #4CAF50;
+
+.addelancategory {
+    .addelan {
+        width: 50%;
+        margin: 30px auto;
+        background-color: $background-color_1;
+        padding: 20px;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .secimpenceresi {
+        text-align: center;
+        cursor: pointer;
+        margin: 20px;
+    }
+}
+
+.addelan {
+    .addelanform {
+        p {
+            margin-bottom: 0px;
+        }
+
+        width: 50%;
+        margin: auto;
+
+        select {
+            width: 100%;
+            margin: 10px auto;
+            padding: 5px;
+        }
+
+        input {
+            width: 100%;
+            margin: 10px auto;
+            padding: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            margin: 10px auto;
+            padding: 5px;
+        }
+
+        button {
+            width: 50%;
+            background-color: $background-color_2;
+            border: none;
+            color: $color_1;
+            padding: 4px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px auto;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    }
+}
+
+.containersecimpenceresi {
+    min-height: 635px;
+    display: flex;
+    align-items: center;
+
+    .secimler {
+        width: 80%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+
+        .addNewOption {
+            text-align: center;
+            background-color: $background-color_3;
+            width: 34%;
+            height: 100px;
+            margin-bottom: 80px;
+            color: $color_1;
+            padding-top: 35px;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+            a {
+                color: $color_1;
+                text-decoration: none;
+                cursor: pointer;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+.secimpenceresi {
+    a {
+        color: $color_2;
+        text-decoration: none;
+    }
+
+    span {
+        &:hover {
+            border-bottom: 1px solid #8c0c0c;
+        }
+    }
+}
+
+.birSecim {
+    width: 35%;
+    margin: auto;
+    text-align: center;
+    padding: 10px 30px;
+    background-color: $background-color_1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    input {
+        width: 100%;
+        margin: 10px auto;
+        padding: 5px;
+    }
+
+    select {
+        width: 100%;
+        margin: 10px auto;
+        padding: 5px;
+    }
+
+    button {
+        background-color: $background-color_4;
+        border: none;
+        color: $color_1;
+        padding: 5px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+}

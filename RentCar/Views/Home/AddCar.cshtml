@@ -39,10 +39,13 @@
                 <p for="">Əsas şəkli seçin:</p>
                 <input type="file" class="mainImage">
                 <div class="photoarea">
+
                 </div>
                 <p for="">Şəkillər seçin:</p>
                 <input type="file" class="images" multiple>
-                <div class="photoarea">
+
+                <div class="photoareaMult">
+
                 </div>
                 <button type="submit" class="addNewCarSubmit">Təsdiqlə</button>
             </form>
@@ -55,10 +58,8 @@
 
 </div>
 <script>
-        //   document.querySelector(".secimpenceresi").addEventListener("click", function () {
-        //   document.querySelector(".addcategory").style.display = "block"
-        //})
-
+   
+    //marka secildikde uygun modelin gelmesi
          $(".selectmarka").change(function(x) {
             var selectedMarkVal = $( ".selectmarka option:selected" ).val();
             console.log(selectedMarkVal);
@@ -83,9 +84,11 @@
                         alert("Error while inserting data");
                     }
                 });
-        });
+     });
 
-    $('.addNewCarSubmit').on("click",function(e) {
+
+   //masin elave olunmasi ajax post 
+       $('.addNewCarSubmit').on("click",function(e) {
        e.preventDefault()
 
         var marka = parseInt($( ".selectmarka option:selected" ).val());
@@ -103,6 +106,7 @@
             $.each($(".images")[0].files, function(i, file) {
               formData.append('images', file);
             });
+
         formData.append("MarkId" ,marka);
         formData.append("ModelId" , model);
         formData.append("CaregoryId" ,category);
@@ -120,13 +124,53 @@
                     contentType: false,
                     processData: false,
                     success:function (data) {
-                        alert("Successfully added");
+                        Swal.fire({
+                                icon: 'success',
+                                title: 'Yeni maşın əlavə olundu',
+                                showConfirmButton: false,
+                                timer: 1500
+                             })
                     },
                     error: function () {
                         alert("Error while inserting data");
                     }
                 });
+     });
 
-    });
+    //esas seklin gorunmesi
+      document.querySelector(".mainImage").addEventListener("change", function () {
+         let item = document.createElement('div')
+         item.className = 'item'
+
+         let img = document.createElement('img')
+         img.src = URL.createObjectURL(this.files[0])
+ 
+         item.appendChild(img)
+         document.querySelector(".photoarea").appendChild(item)
+
+         item.addEventListener("click", function () {
+             this.remove()
+             $(".mainImage").attr('disabled', false)
+         })
+         $(this).attr('disabled', true)
+     })
+
+
+    //elave sekillerin gorunmesi
+     document.querySelector(".images").addEventListener("change", function () {   
+   
+       for (let i = 0; i < $(".images")[0].files.length; i++) {
+          var src=  URL.createObjectURL(this.files[i])
+       document.querySelector(".photoareaMult").innerHTML+=`
+          <div class="item">
+              <img src="${src}">
+          </div>
+        `
+     }
+
+            $(".item").click(function () {
+            $(this).remove()
+          })
+ })
 
 </script>

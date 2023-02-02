@@ -1,0 +1,101 @@
+﻿@using RentCar.Models.Models
+@model UpdateCarData
+
+<div class="addelancategory">
+    <div class="addelan">
+        <h1>Avtomobil əlavə edin</h1>
+        <div class="addelanform">
+            <form action="">
+                <select class="selectmarka">
+                    <option value="" disabled>MARKA</option>
+                    @foreach (var item in Model.Marks)
+                    {
+                        if (Model.MarkId==item.MarkId)
+                        {
+                        <option value="@item.MarkId" selected>@item.MarkName</option>                            
+                        }
+                    }
+                </select>
+                <select class="selectmodel">
+                    <option value="" disabled>MODEL</option>
+                    @*      @foreach (var modelim in Model.FilterData.FilterModels)
+                        {
+                        <option value="">@modelim.ModelName</option>
+                        }*@
+                </select>
+                <select class="selectcategory">
+                    <option value=""  disabled>KATEQORIYA</option>
+                    @foreach (var item in Model.Categories)
+                    {
+                        if (Model.CategoryId == item.CategoryId)
+                        {
+                            <option value="@item.CategoryId" selected>@item.CategoryName</option>
+                        }
+                    }
+                </select>
+                <input class="inpprice" type="text" placeholder="Qiymət" value="@Model.Price">
+                <input class="inpyear" type="text" placeholder="Buraxılış ili" value="@Model.Year">
+                <select class="selectenginetype">
+                    <option value=""  disabled>Mühərrik tipi</option>
+                    @foreach (var item in Model.EngineTypes)
+                    {
+                        if (Model.EngineTypeId==item.EngineTypeId)
+                        {
+                        <option value="@item.EngineTypeId" selected>@item.EngineTypeName</option>                                
+                        }
+                    }
+                </select>
+                <input class="inpvolume" type="text" placeholder="Mühərrik həcmi" value="@Model.Volume">
+                <p for="">Əsas şəkli seçin:</p>
+                <input id="coverPhoto" src="@Model.MainImage" type="file" class="mainImage">
+                <div class="photoarea">
+                       <div class="item" attrid="">
+                            <img src="@Model.MainImage" alt="">
+                       </div>
+                </div>
+                <p for="">Şəkillər seçin:</p>
+                <input type="file" class="images" multiple>
+                <div class="photoareaMult">
+                   @foreach (var img in @Model.Images)
+                  {
+                      <div class="item" attrid="@Model.Images">
+                            <img src="@img" >
+                        </div>
+                  }                    
+                </div>  
+                <button type="submit" class="addNewCarSubmit">Təsdiqlə</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+     //marka secildikde uygun modelin gelmesi
+        $(document).ready(function(x) {
+            var selectedMarkVal = $( ".selectmarka option:selected" ).val();
+            console.log(selectedMarkVal);
+            $.ajax({
+                    type: "Get",
+                    url: '@Url.Action("GetModels","Home")',
+                    data: {
+                    id:selectedMarkVal
+                    },
+                    contentType: "application/json; charset=utf-8",
+                    success:
+                        function (returndata) {
+                        $(".selectmodel").children().remove().end()
+                          $(".selectmodel").append(`<option value="" disabled>MODEL</option>`)
+
+                        $.each(returndata,function(i,item){
+                            var option = new Option(item["modelName"],item["modelId"]);
+                            $(".selectmodel").append($(option))
+                        })
+                    },
+                    error: function () {
+                        alert("Error while inserting data");
+                    }
+                });
+        });
+
+</script>
